@@ -1,0 +1,38 @@
+header {
+  background-color: #3ee6e6;
+  height: 50vh;
+  width: 100vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+header #container .type-writer-container {
+  text-align: start;
+  font-size: 2rem;
+}
+
+.type-writer {
+  padding: 0 0 0 3px;
+}
+
+.type-writer::before {
+  font-weight: 600;
+}
+
+#nav {
+  width: 100vw;
+  height: 4rem;
+  position: absolute;
+  top: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+/*# sourceMappingURL=header.module.css.map */
