@@ -8,7 +8,6 @@ import axios from "axios";
 import Chart from "chart.js/auto";
 const HomePage = () => {
   const [stateData, setStateData] = useState(null);
-  const [graphData, setGraphData] = useState(null);
   const data = useContext(context);
   let mappedItems = [];
   const fetchInterestOverTime = async () => {
@@ -74,18 +73,14 @@ const HomePage = () => {
   useEffect(() => {
     fetchInterestOverTime();
   }, []);
-  const fetchData = async (des) => {
+  const fetchData = async () => {
     const response = await axios.get(
-      `/.netlify/functions/${des}?country=${data.initials}`
+      `/.netlify/functions/dailyTrends?country=${data.initials}`
     );
-    if (des === "dailyTrends") {
-      setStateData(response.data);
-    } else if (des === "interestOverTime") {
-      setGraphData(response.data);
-    }
+    setStateData(response.data);
   };
   useEffect(() => {
-    fetchData("dailyTrends");
+    fetchData();
   }, [data]);
 
   if (stateData) {
