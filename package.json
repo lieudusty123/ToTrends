@@ -13,7 +13,6 @@
     "cors": "^2.8.5",
     "express": "^4.18.1",
     "google-trends-api": "^4.9.2",
-    "http-proxy-middleware": "^2.0.6",
     "netlify-lambda": "^2.0.15",
     "node-fetch": "^3.2.10",
     "react": "^18.2.0",
@@ -26,7 +25,7 @@
   "scripts": {
     "api:serve": "netlify-lambda serve .netlify/functions",
     "start": "react-scripts start",
-    "build": "netlify-lambda build .netlify/functions && react-scripts build",
+    "build": "netlify-lambda build .netlify/functions && react-scripts build-",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "dev": "netlify dev"
