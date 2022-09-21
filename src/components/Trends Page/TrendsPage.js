@@ -23,6 +23,7 @@ const TrendsPage = (props) => {
         data: [],
       };
       let index = 0;
+      console.log(responseData);
       responseData.default.timelineData.forEach((date) => {
         if (date.value[0] > 50) {
           if (responseData.default.timelineData[index].value[0] < 10) {
