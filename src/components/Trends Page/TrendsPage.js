@@ -12,6 +12,8 @@ const TrendsPage = (props) => {
   const pleaseWork = useRef();
   useEffect(() => {
     const fetchInterestOverTime = async () => {
+      console.log(data.initials);
+      console.log(passedData.searchTerm);
       const response = await axios.get(
         `/.netlify/functions/interestOverTime?country=${data.initials}&term=${passedData.searchTerm}`
       );
