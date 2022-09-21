@@ -10,78 +10,78 @@ const HomePage = () => {
   const [stateData, setStateData] = useState(null);
   const data = useContext(context);
   let mappedItems = [];
-  const fetchInterestOverTime = async () => {
-    const response = await axios.get(
-      `/.netlify/functions/interestOverTime?country=${data.initials}`
-    );
-    const responseData = await response.data;
-    const chartData = {
-      dates: [],
-      data: [],
-    };
-    let index = 0;
-    responseData.default.timelineData.forEach((date) => {
-      if (date.value[0] > 50) {
-        if (responseData.default.timelineData[index].value[0] < 10) {
-          chartData.data.push(
-            responseData.default.timelineData[index].value[0]
-          );
+  useEffect(() => {
+    const fetchInterestOverTime = async () => {
+      const response = await axios.get(
+        `/.netlify/functions/interestOverTime?country=${data.initials}`
+      );
+      const responseData = await response.data;
+      const chartData = {
+        dates: [],
+        data: [],
+      };
+      let index = 0;
+      responseData.default.timelineData.forEach((date) => {
+        if (date.value[0] > 50) {
+          if (responseData.default.timelineData[index].value[0] < 10) {
+            chartData.data.push(
+              responseData.default.timelineData[index].value[0]
+            );
+          }
         }
-      }
-      chartData.data.push(date.value[0]);
-      chartData.dates.push(date.formattedTime);
-      index++;
-    });
+        chartData.data.push(date.value[0]);
+        chartData.dates.push(date.formattedTime);
+        index++;
+      });
 
-    const targetElement = document.querySelector("#here");
-    console.log(chartData);
-    const datas = {
-      labels: chartData.dates,
-      datasets: [
-        {
-          label: "My First Dataset",
-          data: chartData.data,
-          fill: false,
-          borderColor: "rgb(75, 192, 192)",
-          tension: 0.1,
-        },
-      ],
-    };
-    const config = {
-      type: "line",
-      data: datas,
-      options: {
-        scales: {
-          y: {
-            max: 100,
-            min: 0,
-            ticks: {
-              stepSize: 25,
+      const targetElement = document.querySelector("#here");
+      console.log(chartData);
+      const datas = {
+        labels: chartData.dates,
+        datasets: [
+          {
+            label: "My First Dataset",
+            data: chartData.data,
+            fill: false,
+            borderColor: "rgb(75, 192, 192)",
+            tension: 0.1,
+          },
+        ],
+      };
+      const config = {
+        type: "line",
+        data: datas,
+        options: {
+          scales: {
+            y: {
+              max: 100,
+              min: 0,
+              ticks: {
+                stepSize: 25,
+              },
+            },
+            x: {
+              ticks: {
+                autoSkip: true,
+                maxTicksLimit: 5,
+              },
             },
           },
-          x: {
-            ticks: {
-              autoSkip: true,
-              maxTicksLimit: 5,
-            },
-          },
         },
-      },
+      };
+      new Chart(targetElement, config);
     };
-    const chart = new Chart(targetElement, config);
-  };
-  useEffect(() => {
     fetchInterestOverTime();
-  }, []);
-  const fetchData = async () => {
-    const response = await axios.get(
-      `/.netlify/functions/dailyTrends?country=${data.initials}`
-    );
-    setStateData(response.data);
-  };
+  }, [data.initials]);
   useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get(
+        `/.netlify/functions/dailyTrends?country=${data.initials}`
+      );
+      setStateData(response.data);
+    };
     fetchData();
-  }, [data]);
+  }, [data.initials]);
 
   if (stateData) {
     let targetArr = [];
@@ -90,8 +90,6 @@ const HomePage = () => {
     } else {
       targetArr = stateData.default.trendingSearchesDays[0].trendingSearches;
     }
-    console.log(stateData);
-    console.log(targetArr);
     for (let index = 0; index < 3; index++) {
       mappedItems.push(
         <div className="card" style={{ width: 18 + "rem" }} key={uuidv4()}>
