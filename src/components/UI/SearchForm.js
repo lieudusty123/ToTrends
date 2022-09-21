@@ -1,14 +1,17 @@
 import classes from "../Home Page/Header/HeaderStyling/header.module.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import context from "../../contextAPI/context";
 
 const SearchForm = (props) => {
   const [searchValue, setSearchValue] = useState("");
   const data = useContext(context);
+  const navigate = useNavigate();
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(searchValue);
+    navigate(`/interestOverTime/${searchValue}`, {
+      state: { searchTerm: searchValue, country: data.initials },
+    });
   }
   return (
     <form onSubmit={handleSubmit}>
@@ -21,12 +24,12 @@ const SearchForm = (props) => {
             setSearchValue(e.target.value);
           }}
         />
-        <Link
+        {/* <Link
           to={{ pathname: `/interestOverTime/${searchValue}` }}
           state={{ searchTerm: searchValue, country: data.initials }}
-        >
-          <button>Submit</button>
-        </Link>
+        > */}
+        <button>Submit</button>
+        {/* </Link> */}
       </div>
     </form>
   );
