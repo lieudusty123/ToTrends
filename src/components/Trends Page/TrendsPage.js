@@ -17,6 +17,8 @@ const TrendsPage = (props) => {
   function getInfoFromUrl() {
     const lastIndex = location.pathname.lastIndexOf("/");
     searchTerm = location.pathname.slice(lastIndex + 1);
+    console.log(searchTerm);
+    console.log(location);
   }
   getInfoFromUrl();
 
