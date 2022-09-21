@@ -1,5 +1,5 @@
 import classes from "../Home Page/Header/HeaderStyling/header.module.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import context from "../../contextAPI/context";
 

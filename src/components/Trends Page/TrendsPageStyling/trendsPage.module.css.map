@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "ACAA,AAAA,eAAe,CAAA;EACX,MAAM,EAAE,IAAI;EACZ,KAAK,EAAE,IAAI;CACd;;ADDD,AAAA,KAAK,CAAA;EACD,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,MAAM;EACvB,WAAW,EAAE,MAAM;EACnB,cAAc,EAAE,MAAM;CACzB",
+    "sources": [
+        "trendsPage.module.scss",
+        "_graph.module.scss"
+    ],
+    "names": [],
+    "file": "trendsPage.module.css"
+}
