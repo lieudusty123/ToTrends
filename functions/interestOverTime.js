@@ -4,13 +4,13 @@ const googleTrends = require("google-trends-api");
 exports.handler = async (event, context) => {
   try {
     const country = event.queryStringParameters.country;
+    const term = event.queryStringParameters.term;
     const data = await googleTrends.interestOverTime(
       {
-        keyword: "christmas",
+        keyword: term,
         geo: country,
         startTime: new Date("2004-01-01"),
         endTime: new Date("2022-01-01"),
-        // endTime: new Date(Date.now() - 4 * 60 * 60 * 1000),
       },
       function (err, results) {
         if (err) {
