@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import Nav from "./Nav";
 import classes from "./HeaderStyling/header.module.scss";
 import SearchForm from "../../UI/SearchForm";
@@ -47,7 +47,9 @@ const Header = () => {
       }
     }
   }
-  typeWriter();
+  useEffect(() => {
+    typeWriter();
+  }, []);
   console.log(typeWriterEle.current);
   return (
     <header>
