@@ -1,6 +1,6 @@
 header {
-  background-color: #3ee6e6;
-  height: 50vh;
+  background: #4b4b4b;
+  height: 100vh;
   width: 100vw;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -13,26 +13,94 @@ header {
           justify-content: center;
 }
 
-header #container .type-writer-container {
-  text-align: start;
-  font-size: 2rem;
-}
-
-.type-writer {
-  padding: 0 0 0 3px;
-}
-
-.type-writer::before {
-  font-weight: 600;
-}
-
 #nav {
-  width: 100vw;
-  height: 4rem;
-  position: absolute;
-  top: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-inline: 5%;
+  background-color: #3ee6e6;
+  width: 100vw;
+  height: 5%;
+  position: absolute;
+  top: 0;
+}
+
+#nav img {
+  height: 80%;
+  border-radius: 50%;
+}
+
+#nav select {
+  height: 80%;
+  background-color: #30383f;
+  color: white;
+}
+
+form {
+  width: 60vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-top: 2rem;
+}
+
+form .type-writer-container {
+  font-size: 2vw;
+  width: 70%;
+  color: white;
+}
+
+form .type-writer-container .type-writer {
+  padding: 0 0 0 3px;
+}
+
+form .type-writer-container .type-writer::before {
+  font-weight: 600;
+}
+
+form #form {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+form #form input {
+  padding: 0;
+  height: 2rem;
+  width: 60%;
+  border: none;
+  -webkit-box-shadow: 0px 0px 5px rgba(0, 255, 255, 0.61) inset;
+          box-shadow: 0px 0px 5px rgba(0, 255, 255, 0.61) inset;
+}
+
+form #form button {
+  -webkit-box-shadow: 0px 0px 5px rgba(0, 255, 255, 0.61) inset;
+          box-shadow: 0px 0px 5px rgba(0, 255, 255, 0.61) inset;
+  height: 2rem;
+  border: none;
+}
+
+.headerContent {
+  height: 95%;
 }
 /*# sourceMappingURL=header.module.css.map */

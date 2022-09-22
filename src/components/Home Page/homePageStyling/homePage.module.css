@@ -9,6 +9,20 @@
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   margin-top: 3rem;
+}
+
+@media screen and (min-width: 780px) {
+  #card {
+    width: 20rem !important;
+  }
+}
+
+@media screen and (max-width: 780px) {
+  #card {
+    width: 10rem !important;
+  }
 }
 /*# sourceMappingURL=homePage.module.css.map */

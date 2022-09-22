@@ -9,7 +9,7 @@ exports.handler = async (event, context) => {
       {
         keyword: term,
         geo: country,
-        startTime: new Date("2021-01-01"),
+        startTime: new Date("2022-05-01"),
         endTime: new Date(Date.now()),
       },
       function (err, results) {

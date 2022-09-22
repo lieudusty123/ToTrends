@@ -1,7 +1,6 @@
-@import '_typed';
 header{
-    background-color: rgb(82, 114, 114);
-    height: 50vh;
+    background: rgb(75, 75, 75);
+    height: 100vh;
     width: 100vw;
     display: flex;
     align-items: center;
@@ -16,7 +15,7 @@ header{
     padding-inline: 5%;
     background-color: rgb(62, 230, 230);
     width: 100vw;
-    height: 5rem;
+    height: 5%;
     position: absolute;
     top: 0;
     img{
@@ -31,7 +30,6 @@ header{
 }
 form{
     width: 60vw;
-    height: 20vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,11 +42,6 @@ form{
             .type-writer {
                 padding: 0 0 0 3px;
                 &::before { font-weight: 600; }
-                @include typed(
-                    "trends!", "events!", "searches!",
-                    2,
-                    (caret-width: 5px, caret-space: 2px)
-                ); 
             }
         }
         #form{
@@ -69,4 +62,8 @@ form{
                 border: none;
             }
         }
+}
+
+.headerContent{
+    height: 95%;
 }

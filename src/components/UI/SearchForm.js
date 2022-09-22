@@ -24,12 +24,7 @@ const SearchForm = (props) => {
             setSearchValue(e.target.value);
           }}
         />
-        {/* <Link
-          to={{ pathname: `/interestOverTime/${searchValue}` }}
-          state={{ searchTerm: searchValue, country: data.initials }}
-        > */}
         <button>Submit</button>
-        {/* </Link> */}
       </div>
     </form>
   );

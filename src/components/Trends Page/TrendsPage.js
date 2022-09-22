@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { Chart, registerables } from "chart.js";
 import context from "../../contextAPI/context";
@@ -12,8 +12,10 @@ const TrendsPage = (props) => {
   const data = useContext(context);
   const location = useLocation();
   const pleaseWork = useRef();
+  const [rerender, setRerender] = useState(false);
+  const [graphData, setGraphData] = useState();
+
   let searchTerm = "";
-  getInfoFromUrl();
   function getInfoFromUrl() {
     const lastIndex = location.pathname.lastIndexOf("/");
     searchTerm = location.pathname.slice(lastIndex + 1);
@@ -21,7 +23,6 @@ const TrendsPage = (props) => {
     console.log(location);
   }
   getInfoFromUrl();
-
   useEffect(() => {
     const fetchInterestOverTime = async () => {
       if (chart.id !== undefined) {
@@ -30,12 +31,14 @@ const TrendsPage = (props) => {
       const response = await axios.get(
         `/.netlify/functions/interestOverTime?country=${data.initials}&term=${searchTerm}`
       );
-      console.log(response);
+
       const responseData = await response.data;
+      console.log(responseData);
       if (
         typeof responseData === "string" ||
         responseData.default.timelineData.length === 0
       ) {
+        chart = {};
         return console.log(
           "Oops! something went wrong! you might wanna double-check your query.."
         );
@@ -93,19 +96,25 @@ const TrendsPage = (props) => {
             responsive: true,
           },
         };
+        setGraphData(config);
         chart = new Chart(targetElement, config);
       }
     };
     fetchInterestOverTime();
   }, [searchTerm, data.initials]);
+  console.log(graphData);
   return (
     <div className={classes.root}>
       <SearchForm />
       <div className={classes.graphContainer}>
-        <canvas className={classes.graph} ref={pleaseWork}>
-          {chart.id === undefined && <div>something is fucked</div>}
-        </canvas>
+        {Object.keys(chart).length === 0 && (
+          <div>Oh shit! jk it's just loading</div>
+        )}
+        <canvas className={classes.graph} ref={pleaseWork}></canvas>
       </div>
+      <button onClick={() => setRerender(!rerender)}>
+        Re-render component
+      </button>
     </div>
   );
 };
