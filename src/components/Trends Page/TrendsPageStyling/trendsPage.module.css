@@ -1,6 +1,5 @@
-.graphContainer {
-  height: 40vh;
-  width: 90vw;
+.graph {
+  height: 280px;
 }
 
 .root {

@@ -3,6 +3,8 @@ import Nav from "./Nav";
 import classes from "./HeaderStyling/header.module.scss";
 import SearchForm from "../../UI/SearchForm";
 
+import image from "./HeaderStyling/sprites/main_page_bg.png";
+
 const Header = () => {
   const typeWriterEle = useRef();
 
@@ -53,13 +55,21 @@ const Header = () => {
   }, []);
   console.log(typeWriterEle.current);
   return (
-    <header>
+    <header
+      style={{
+        background: `url(${image}) rgba(234,243,250,255)`,
+        backgroundPosition: "right",
+        backgroundSize: "contain",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       <Nav />
       <div className={classes.headerContent}>
         <SearchForm>
           <div className={classes["type-writer-container"]}>
             Explore the worlds current{" "}
             <span ref={typeWriterEle} className={classes["type-writer"]}></span>
+            <span className={classes["flicker"]}></span>
           </div>
         </SearchForm>
       </div>

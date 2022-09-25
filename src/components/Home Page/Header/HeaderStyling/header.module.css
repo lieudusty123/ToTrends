@@ -1,5 +1,4 @@
 header {
-  background: #4b4b4b;
   height: 100vh;
   width: 100vw;
   display: -webkit-box;
@@ -72,6 +71,52 @@ form .type-writer-container .type-writer {
 
 form .type-writer-container .type-writer::before {
   font-weight: 600;
+}
+
+form .type-writer-container .flicker {
+  display: inline-block;
+  height: 1.1rem;
+  width: 3px;
+  margin-left: 2px;
+  background-color: black;
+  -webkit-animation: blink infinite .8s;
+          animation: blink infinite .8s;
+}
+
+@-webkit-keyframes blink {
+  0% {
+    background-color: transparent;
+  }
+  49% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: black;
+  }
+  99% {
+    background-color: black;
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+@keyframes blink {
+  0% {
+    background-color: transparent;
+  }
+  49% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: black;
+  }
+  99% {
+    background-color: black;
+  }
+  100% {
+    background-color: transparent;
+  }
 }
 
 form #form {

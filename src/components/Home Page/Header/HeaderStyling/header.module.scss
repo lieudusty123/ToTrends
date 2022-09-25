@@ -1,11 +1,10 @@
 header{
-    background: rgb(75, 75, 75);
+    // background: rgb(75, 75, 75);
     height: 100vh;
     width: 100vw;
     display: flex;
     align-items: center;
     justify-content: center;
-    
 }
 
 #nav{
@@ -42,6 +41,22 @@ form{
             .type-writer {
                 padding: 0 0 0 3px;
                 &::before { font-weight: 600; }
+            }
+            .flicker{
+                display: inline-block;
+                height: 1.1rem;
+                width: 3px;
+                margin-left: 2px;
+                background-color: black;
+
+                animation: blink infinite .8s;
+                @keyframes blink {
+                    0% {background-color: transparent;}
+                    49% {background-color: transparent;}
+                    50% {background-color: black;}
+                    99% {background-color: black;}
+                    100% {background-color: transparent;}
+                }
             }
         }
         #form{
