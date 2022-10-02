@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import Nav from "./Nav";
-import classes from "./HeaderStyling/header.module.scss";
+import classes from "./HeaderStyling/header.module.css";
 import SearchForm from "../../UI/SearchForm";
 
 import image from "./HeaderStyling/sprites/main_page_bg.png";
@@ -53,26 +53,24 @@ const Header = () => {
     }
     typeWriter();
   }, []);
-  console.log(typeWriterEle.current);
   return (
     <header
       style={{
         background: `url(${image}) rgba(234,243,250,255)`,
-        backgroundPosition: "right",
-        backgroundSize: "contain",
+        backgroundPosition: "top right",
+        backgroundSize: "70%",
         backgroundRepeat: "no-repeat",
       }}
+      alt="art by pch.vector on Freepik"
     >
       <Nav />
-      <div className={classes.headerContent}>
-        <SearchForm>
-          <div className={classes["type-writer-container"]}>
-            Explore the worlds current{" "}
-            <span ref={typeWriterEle} className={classes["type-writer"]}></span>
-            <span className={classes["flicker"]}></span>
-          </div>
-        </SearchForm>
-      </div>
+      <SearchForm>
+        <div className={classes["type-writer-container"]}>
+          Explore the worlds current{" "}
+          <span ref={typeWriterEle} className={classes["type-writer"]}></span>
+          <span className={classes["flicker"]}></span>
+        </div>
+      </SearchForm>
     </header>
   );
 };

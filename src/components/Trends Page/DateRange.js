@@ -1,6 +1,11 @@
+import TrendsPageClasses from "./TrendsPageStyling/trendsPage.module.css";
+
 const DateRange = (props) => {
   return (
-    <select onInput={(e) => props.inputHandler(e)}>
+    <select
+      className={TrendsPageClasses.inputs}
+      onInput={(e) => props.inputHandler(e)}
+    >
       <option value="week">Week</option>
       <option value="month" selected>
         Month

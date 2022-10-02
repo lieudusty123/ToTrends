@@ -11,18 +11,59 @@
           justify-content: space-evenly;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  margin-top: 3rem;
+  padding-block: 3rem;
+  background-color: #eaf3fa;
 }
 
-@media screen and (min-width: 780px) {
-  #card {
-    width: 20rem !important;
-  }
+#card-container .card {
+  background: linear-gradient(-135deg, #7499f1 0%, #afc3ff 120%);
+  border-radius: 2rem;
+  width: 14rem;
+  padding-inline: 1rem;
+  padding-block: 1rem;
 }
 
-@media screen and (max-width: 780px) {
-  #card {
-    width: 10rem !important;
-  }
+#card-container .card .card-header {
+  margin-top: 2rem;
+  height: 100px;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#card-container .card .card-header img {
+  width: 5rem;
+  border-radius: 100%;
+  height: 100px;
+  width: 100px;
+}
+
+#card-container .card .card-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#card-container .card .card-body .card-content .card-title {
+  text-align: center;
+}
+
+#card-container .card .card-body .card-footer {
+  color: #7499f1;
+  font-size: large;
+  font-weight: 700;
+  border-top: 3px solid #7499f1;
+  padding-block: 1rem;
 }
 /*# sourceMappingURL=homePage.module.css.map */

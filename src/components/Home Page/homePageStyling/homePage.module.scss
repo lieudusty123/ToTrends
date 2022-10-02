@@ -1,21 +1,48 @@
+@import '../../UI/styling/vars';
 #card-container{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    margin-top: 3rem;
-}
+    padding-block: 3rem;
+    background-color: $background-color;
+    .card{
+        background: linear-gradient(-135deg, $dark-color 0%, $light-color 120%) ;
+        border-radius: 2rem;
+        width: 14rem;
+        padding-inline: 1rem;
+        padding-block: 1rem;
+        .card-header{
+            margin-top: 2rem;
+            height: 100px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            img{
+                width: 5rem;
+                border-radius: 100%;
+                height: 100px;
+                width: 100px;
+            }
+        }
+        .card-body{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            .card-content{
+                .card-title{
+                    text-align: center;
+                    // color: $highlight-color;
+                }
+            }
 
-
-@media screen and (min-width: 780px)  {
-    #card{
-        width: 20rem !important;
+            .card-footer{
+                color: $dark-color;
+                font-size: large;
+                font-weight: 700;
+                border-top: 3px solid $dark-color;
+                padding-block: 1rem;
+            }
+        }
     }
-    
-}
-@media screen and (max-width: 780px)  {
-    #card{
-        width: 10rem !important;
-    }
-    
 }

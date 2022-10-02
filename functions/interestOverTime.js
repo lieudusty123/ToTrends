@@ -5,8 +5,13 @@ exports.handler = async (event, context) => {
   try {
     const country = event.queryStringParameters.country;
     const term = event.queryStringParameters.term;
+    const compare = event.queryStringParameters.compare;
     let currentDate = new Date();
     let date;
+    let searchQuery = term;
+    if (typeof compare === "string") {
+      searchQuery = [term, compare];
+    }
     switch (event.queryStringParameters.date) {
       case "week":
         date = new Date(
@@ -37,15 +42,27 @@ exports.handler = async (event, context) => {
         );
         break;
     }
+    let obj = {};
+    if (country === "world") {
+      obj = {
+        keyword: searchQuery,
+        startTime: date,
+        endTime: currentDate,
+      };
+    } else {
+      obj = {
+        keyword: searchQuery,
+        startTime: date,
+        endTime: currentDate,
+        ...(country && { geo: country }),
+      };
+    }
+
+    console.log(obj);
     console.log("date", date);
     console.log("currentDate", currentDate);
     const data = await googleTrends.interestOverTime(
-      {
-        keyword: term,
-        geo: country,
-        startTime: date,
-        endTime: currentDate,
-      },
+      obj,
       function (err, results) {
         if (err) {
           returnedObj = {
