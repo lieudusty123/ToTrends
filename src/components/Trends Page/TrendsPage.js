@@ -3,7 +3,7 @@ import axios from "axios";
 import { Chart, registerables } from "chart.js";
 import context from "../../contextAPI/context";
 import SearchForm from "../UI/SearchForm";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import classes from "./TrendsPageStyling/trendsPage.module.css";
 import DateRange from "./DateRange";
 import CountrySelector from "../Home Page/Header/CountrySelector";
@@ -18,7 +18,6 @@ const TrendsPage = () => {
   const location = useLocation();
   const pleaseWork = useRef();
   const [graphState, setGraphState] = useState("loading");
-  const navigate = useNavigate();
   const [graphTerms, setGraphTerms] = useState({
     country: data.initials,
     date: "month",
@@ -152,17 +151,13 @@ const TrendsPage = () => {
             },
           },
         };
-        console.log(chartData.compareData);
-        console.log(chartData.compareData === undefined);
-        if (chartData.compareData == undefined) {
-          {
-            config = {
-              ...config,
-              legend: {
-                display: false,
-              },
-            };
-          }
+        if (chartData.compareData === undefined) {
+          config = {
+            ...config,
+            legend: {
+              display: false,
+            },
+          };
         }
         chart = new Chart(targetElement, config);
       }
