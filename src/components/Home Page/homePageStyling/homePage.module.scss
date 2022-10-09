@@ -1,19 +1,43 @@
 @import '../../UI/styling/vars';
+html{
+    scroll-behavior: smooth;
+}
+::-webkit-scrollbar {
+    width: 15px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(147, 147, 147); 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(118, 118, 118); 
+  }
 #card-container{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    width: 100%;
+    row-gap: 4rem;   
     padding-block: 3rem;
     background-color: $background-color;
     .card{
-        background: linear-gradient(-135deg, $dark-color 0%, $light-color 120%) ;
+        display: flex;
+        flex-direction: column;
+        background: white ;
         border-radius: 2rem;
-        width: 14rem;
-        padding-inline: 1rem;
-        padding-block: 1rem;
+        width: 16rem;
+        height: 23rem;
+        overflow: hidden;
         .card-header{
-            margin-top: 2rem;
+            padding: 2rem 1rem 0 1rem;
             height: 100px;
             overflow: hidden;
             display: flex;
@@ -29,20 +53,38 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            height: calc(23rem - 100px - 2rem);
             .card-content{
+                padding-inline: 1rem;
                 .card-title{
                     text-align: center;
-                    // color: $highlight-color;
                 }
             }
 
             .card-footer{
-                color: $dark-color;
-                font-size: large;
+                display: flex;
+                justify-content: center;
+                color: white;
+                background: $gradient;
+                font-size: 2rem;
                 font-weight: 700;
-                border-top: 3px solid $dark-color;
                 padding-block: 1rem;
             }
         }
     }
 }
+@media only screen and(min-width: 1301px) {
+    #card-container {grid-template-columns: repeat(4, 1fr); }
+}
+@media only screen and(max-width: 1300px) {
+    #card-container {grid-template-columns: repeat(3, 1fr); }
+}
+@media only screen and(max-width: 900px) {
+    #card-container {
+        grid-template-columns: repeat(2, 1fr);
+}
+}
+@media only screen and(max-width: 600px) {
+    #card-container {grid-template-columns: repeat(1, 1fr); }
+}
+

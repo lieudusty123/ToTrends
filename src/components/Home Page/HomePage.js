@@ -6,11 +6,15 @@ import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 
 const HomePage = () => {
-  const [stateData, setStateData] = useState(null);
   const data = useContext(context);
-  console.log(data.initials);
-  let mappedItems = [];
-
+  const [stateData, setStateData] = useState(null);
+  const [wordCloudData, setWordCloudData] = useState([]);
+  const [mappedItems, setMappedItems] = useState([]);
+  useEffect(() => {
+    if (stateData) {
+      afterEffect();
+    }
+  }, [stateData]);
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
@@ -22,16 +26,43 @@ const HomePage = () => {
     fetchData();
   }, [data.initials]);
 
-  if (stateData) {
+  function afterEffect() {
+    let todayArr = stateData.default.trendingSearchesDays[0].trendingSearches;
+    let yesterdayArr;
+    stateData.default.trendingSearchesDays.length > 1
+      ? (yesterdayArr =
+          stateData.default.trendingSearchesDays[1].trendingSearches)
+      : (yesterdayArr = []);
     let targetArr = [];
-    if (stateData.default.trendingSearchesDays[0].trendingSearches.length < 3) {
-      targetArr = stateData.default.trendingSearchesDays[1].trendingSearches;
+    if (todayArr.length < 8 && yesterdayArr !== 0) {
+      targetArr = yesterdayArr;
     } else {
-      targetArr = stateData.default.trendingSearchesDays[0].trendingSearches;
+      targetArr = todayArr;
     }
-    for (let index = 0; index < 4; index++) {
+
+    let highestArr =
+      todayArr.length > yesterdayArr.length ? todayArr : yesterdayArr;
+    let passedObj = [];
+    highestArr.forEach((element) => {
+      let traffic;
+      if (element.formattedTraffic[element.formattedTraffic.length - 2] === "M")
+        traffic = +element.formattedTraffic.slice(0, -2) * 1000000;
+      else if (
+        element.formattedTraffic[element.formattedTraffic.length - 2] === "K"
+      )
+        traffic = +element.formattedTraffic.slice(0, -2) * 1000;
+      else traffic = +element.formattedTraffic.slice(0, -2);
+      passedObj.push({
+        text: element.title.query,
+        value: traffic,
+      });
+    });
+    setWordCloudData(passedObj);
+    let mapTemp = [];
+    for (let index = 0; index < 8; index++) {
       let trafficNumber = targetArr[index].formattedTraffic.slice(0, -1);
-      mappedItems.push(
+
+      mapTemp.push(
         <div id={classes.card} className={classes.card} key={uuidv4()}>
           <div className={classes["card-header"]}>
             <img
@@ -44,7 +75,10 @@ const HomePage = () => {
               <h4 className={classes["card-title"]}>
                 {targetArr[index].title.query}
               </h4>
-              <p className={classes["card-text"]}>
+              <p
+                className={classes["card-text"]}
+                style={{ textAlign: data.initials === "IL" ? "right" : "left" }}
+              >
                 {targetArr[index].articles[0].title
                   .replace(/(&quot;)/g, '"')
                   .replace(/(&#39;)/g, "'")}
@@ -55,11 +89,12 @@ const HomePage = () => {
         </div>
       );
     }
+    setMappedItems(mapTemp);
   }
 
   return (
     <Fragment>
-      <Header />
+      <Header wordCloud={wordCloudData} />
       <div id={classes["card-container"]}>
         {mappedItems.length === 0 ? "Loading..." : mappedItems}
       </div>

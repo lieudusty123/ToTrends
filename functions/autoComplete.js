@@ -1,17 +1,11 @@
 const axios = require("axios");
 const googleTrends = require("google-trends-api");
 
-console.log("0. dailyTrends outside handler");
 exports.handler = async (event, context) => {
-  console.log("1. dailyTrends inside handler");
   try {
-    const country = event.queryStringParameters.country;
-    const currentDate = new Date();
-    const data = await googleTrends.dailyTrends(
-      {
-        trendDate: `${currentDate.getFullYear()}-${currentDate.getUTCDate()}-${currentDate.getMonth()}`,
-        geo: country,
-      },
+    const passedKeyword = event.queryStringParameters.term;
+    const data = await googleTrends.autoComplete(
+      { keyword: passedKeyword },
       function (err, results) {
         if (err) {
           return err;
@@ -20,6 +14,7 @@ exports.handler = async (event, context) => {
         }
       }
     );
+    console.log(data);
     return {
       statusCode: 200,
       body: data,

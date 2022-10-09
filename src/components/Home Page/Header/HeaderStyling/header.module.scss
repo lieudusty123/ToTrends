@@ -1,20 +1,21 @@
 @import '../../../UI/styling/vars';
+@mixin flexCenter($direction, $justify:center, $align:center) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}
 header{
     height: 100vh;
     width: 100vw;
     max-width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+    background-image: linear-gradient(43deg, #0081A7 0%, #00AFB9 100%);
+    @include flexCenter(column,center ,center);
 }
 
 nav{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include flexCenter(row,space-between ,center);
     padding-inline: 3rem;
-    background-color: $dark-color;
-    box-shadow: 0 0 7px rgba(0, 0, 0, 0.472);
     height: 4rem;
     position: absolute;
     top: 0;
@@ -29,7 +30,7 @@ nav{
         &::after{
             display:block;
             content: '';
-            border-bottom: solid 3px #000000;  
+            border-bottom: solid 3px #ffffff;  
             transform: scaleX(0);  
             transform-origin: 100% 50%;
             transition: transform 250ms ease-in-out;
@@ -43,67 +44,146 @@ nav{
     }
     .date-selector{
         max-height: 100%;
-        background-color: white;
-        border-color: $highlight-color;
-        color: $highlight-color;
-        padding: .5rem;
-            &:focus{      
-                outline: none;
-            }
+        background-color: #0099a1;
+        border: none;
+        color: white;
+        padding: .8rem;
+        &:hover{
+            cursor: pointer;
+        }
+        &:focus{      
+            outline: none;
+        }
     }
 }
 
+#header-content{
+    position: absolute;
+    width: 100%;
+    top: 10rem;
+    @include flexCenter(column,center ,center);
 
-.headerContent{
-    width: 60vw;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: column;
-    margin-left: 2rem;
+    .form-content{  
+    margin: 2rem 2rem 0 2rem;
     .type-writer-container{
-        font-size: 2vw;
-        width: 70%;
-        color: $dark-color;
+        color: white;
+        margin-bottom: 1rem;
         .type-writer{
             color: $highlight-color;
+            font-weight: 700;
         }
         .flicker{
             display: inline-block;
-            height: 1.5vw;
+            height: 1.5rem;
             width: 3px;
             margin-left: 2px;
-            background-color: $highlight-color;
+            background-color: white;
             animation: blink infinite .8s;
             @keyframes blink {
                 0% {background-color: transparent;}
-                49% {background-color: transparent;}
-                50% {background-color: $highlight-color;}
-                99% {background-color: $highlight-color;}
+                45% {background-color: transparent;}
+                50% {background-color: white;}
+                95% {background-color: white;}
                 100% {background-color: transparent;}
             }
         }
     }
     #form{
-        width: inherit;
-        display: flex;
-        align-items: center;
+        @include flexCenter(row,flex-start ,center );
+        border: 2px solid rgb(212, 212, 212);
+        border-radius: 5px;
+        width: 60vw;
+        overflow: hidden;
         input{
             box-sizing: border-box;
             padding-inline: .5rem;
-            height: 2rem;
-            width: 60%;
-            border: 1px solid $highlight-color;
+            height: 3rem;
+            font-size: 1.5rem;
+            width: 80%;
+            background-color: rgb(184, 221, 231);
+            color: #0b6783;
+            border: none;
             &:focus{
                 outline: none;
             }
         }
         button{
-            // color: $highlight-color;
-            border: 1px solid $highlight-color;
-            background-color: $highlight-color;
+            border: none;
+            border-left: 1px solid rgb(212, 212, 212);
+            background-color: transparent;
             color: white;
-            height: 2rem;
+            height: 3rem;
+            width: 20%;
+            font-size: 1.2rem;
+            // padding-inline: 1rem;
+            transition: all .1s;
+            &:hover{
+                transition: all .1s;
+                cursor: pointer;
+                background-color: darken(#009bb1,2);
+                
+            }
+        }
+    }
+    }
+}
+#jump-to-section{
+    width: 6rem;
+    height: 6rem;
+    border-radius: 100%;
+    position: absolute;
+    bottom: 3rem;
+    background-size: 50%;
+    animation: arrowAnimation 2s ease-in-out infinite;
+    transition: animation-play-state .5s;
+
+    @keyframes arrowAnimation {
+        0%{bottom: 4rem;}
+        50%{bottom: 1rem;}
+        100%{bottom: 4rem;}
+    }
+    &:hover{
+        transition: animation-play-state .5s;
+        animation-play-state: paused;
+    }
+}
+@media only screen and (min-width: 900px) {
+    .form-content{
+        @include flexCenter(column,center ,flex-start );
+        width: max-content;
+        .type-writer-container{
+            font-size: 2rem;
+        }
+    }
+}
+@media only screen and (max-width: 900px) {
+    // .header-content{
+    // width: calc(100vw - 15px);
+    // }
+    .form-content{
+        @include flexCenter(column,center ,center );
+        width: 100%;
+        .type-writer-container{
+            width: 60vw;
+            font-size: 3vw;
+        }
+    }
+}
+@media only screen and (max-width: 600px) {
+    // .header-content{
+    // width: calc(100vw - 15px);
+    // }
+    #form{
+        button{
+            width: 72px !important;
+        }
+    }
+    .form-content{
+        @include flexCenter(column,center ,center );
+        width: 100%;
+        .type-writer-container{
+            width: 60vw;
+            font-size: 1rem;
         }
     }
 }

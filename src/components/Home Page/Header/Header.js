@@ -1,13 +1,21 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Nav from "./Nav";
 import classes from "./HeaderStyling/header.module.css";
 import SearchForm from "../../UI/SearchForm";
+import ReactWordcloud from "react-wordcloud";
+import arrowImage from "./HeaderStyling/sprites/up-arrow-svgrepo-com.svg";
 
-import image from "./HeaderStyling/sprites/main_page_bg.png";
-
-const Header = () => {
+const Header = (props) => {
   const typeWriterEle = useRef();
-
+  const headerRef = useRef();
+  const [displayArrow, setDisplayArrow] = useState(true);
+  if (displayArrow) {
+    document.addEventListener("scroll", () => {
+      if (window.scrollY > 400) {
+        setDisplayArrow(false);
+      }
+    });
+  }
   useEffect(() => {
     let i = 0;
     var txtArr = ["trends", "events", "searches", "stories"]; /* The text */
@@ -53,24 +61,59 @@ const Header = () => {
     }
     typeWriter();
   }, []);
+
+  const options = {
+    colors: ["#FFF7E5", "#F9D3AB", "#f4cc72", "#ffbe2d", "#ffb100"],
+    enableTooltip: false,
+    deterministic: true,
+    fontFamily: "impact",
+    fontSizes: [40, 80],
+    fontStyle: "normal",
+    fontWeight: "normal",
+    padding: 1,
+    rotations: 3,
+    rotationAngles: [0, 45, -45],
+    scale: "sqrt",
+    spiral: "archimedean",
+    transitionDuration: 1000,
+  };
+  function please() {
+    document
+      .querySelector("#homePage_card-container__qfB3e")
+      .scrollIntoView({ behavior: "smooth" });
+  }
   return (
-    <header
-      style={{
-        background: `url(${image}) rgba(234,243,250,255)`,
-        backgroundPosition: "top right",
-        backgroundSize: "70%",
-        backgroundRepeat: "no-repeat",
-      }}
-      alt="art by pch.vector on Freepik"
-    >
+    <header alt="art by pch.vector on Freepik" ref={headerRef}>
       <Nav />
-      <SearchForm>
-        <div className={classes["type-writer-container"]}>
-          Explore the worlds current{" "}
-          <span ref={typeWriterEle} className={classes["type-writer"]}></span>
-          <span className={classes["flicker"]}></span>
-        </div>
-      </SearchForm>
+      <div id={classes["header-content"]}>
+        {props.wordCloud && (
+          <div style={{ width: "100%", height: "100%" }}>
+            <ReactWordcloud options={options} words={props.wordCloud} />
+          </div>
+        )}
+
+        <SearchForm>
+          <div className={classes["type-writer-container"]}>
+            Explore the current{" "}
+            <span ref={typeWriterEle} className={classes["type-writer"]}></span>
+            <span className={classes["flicker"]}></span>
+          </div>
+        </SearchForm>
+      </div>
+
+      {displayArrow && (
+        <button
+          onClick={please}
+          id={classes["jump-to-section"]}
+          style={{
+            background: `url(${arrowImage}) #0b6783`,
+            backgroundSize: "50%",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            transform: "rotate(180deg)",
+          }}
+        />
+      )}
     </header>
   );
 };

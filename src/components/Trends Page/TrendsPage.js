@@ -195,11 +195,12 @@ const TrendsPage = () => {
 
   function handleCompare(e) {
     e.preventDefault();
-    setGraphTerms((oldTerms) => ({
-      ...oldTerms,
-      compare: compareInput,
-    }));
-    console.log(compareInput);
+    if (compareInput.length > 0) {
+      setGraphTerms((oldTerms) => ({
+        ...oldTerms,
+        compare: compareInput,
+      }));
+    }
   }
   return (
     <div className={classes.root}>

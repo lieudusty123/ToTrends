@@ -12,7 +12,7 @@ const CountrySelector = (props) => {
           : TrendsPageClasses.inputs
       }
       onInput={(event) => props.onCountrySelect(event)}
-      defaultValue="world, World Wide"
+      // defaultValue="world, World Wide"
     >
       <option value="AR, Argentina">Argentina</option>
       <option value="AU, Australia">Australia</option>
@@ -48,7 +48,7 @@ const CountrySelector = (props) => {
       <option value="UA, Ukraine">Ukraine</option>
       <option value="GB, United Kingdom">United Kingdom</option>
       <option value="US, United States">United States</option>
-      <option value="world, World Wide">World Wide</option>
+      {/* <option value="world, World Wide">World Wide</option> */}
     </select>
   );
 };
