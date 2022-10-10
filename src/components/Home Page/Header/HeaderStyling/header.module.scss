@@ -63,6 +63,10 @@ nav{
     top: 10rem;
     @include flexCenter(column,center ,center);
 
+    .word-cloud-wrapper{
+        height: 100%;
+    }
+
     .form-content{  
     margin: 2rem 2rem 0 2rem;
     .type-writer-container{
@@ -145,9 +149,13 @@ nav{
     &:hover{
         transition: animation-play-state .5s;
         animation-play-state: paused;
+        cursor: pointer;
     }
 }
 @media only screen and (min-width: 900px) {
+    // .word-cloud-wrapper{
+    //     width: 800px;
+    //  }
     .form-content{
         @include flexCenter(column,center ,flex-start );
         width: max-content;
@@ -160,6 +168,9 @@ nav{
     // .header-content{
     // width: calc(100vw - 15px);
     // }
+    // .word-cloud-wrapper{
+    //     width: 700px;
+    //  }
     .form-content{
         @include flexCenter(column,center ,center );
         width: 100%;
@@ -171,7 +182,9 @@ nav{
 }
 @media only screen and (max-width: 600px) {
     // .header-content{
-    // width: calc(100vw - 15px);
+    //     .word-cloud-wrapper{
+    //        width: 500px;
+    //     }
     // }
     #form{
         button{

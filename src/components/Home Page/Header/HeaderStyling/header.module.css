@@ -108,6 +108,10 @@ nav .date-selector:focus {
           align-items: center;
 }
 
+#header-content .word-cloud-wrapper {
+  height: 100%;
+}
+
 #header-content .form-content {
   margin: 2rem 2rem 0 2rem;
 }
@@ -269,6 +273,7 @@ nav .date-selector:focus {
   transition: animation-play-state .5s, -webkit-animation-play-state .5s;
   -webkit-animation-play-state: paused;
           animation-play-state: paused;
+  cursor: pointer;
 }
 
 @media only screen and (min-width: 900px) {

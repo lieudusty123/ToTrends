@@ -70,9 +70,9 @@ const Header = (props) => {
     fontSizes: [40, 80],
     fontStyle: "normal",
     fontWeight: "normal",
-    padding: 1,
-    rotations: 3,
-    rotationAngles: [0, 45, -45],
+    padding: 2,
+    rotations: 1,
+    rotationAngles: [0],
     scale: "sqrt",
     spiral: "archimedean",
     transitionDuration: 1000,
@@ -82,12 +82,16 @@ const Header = (props) => {
       .querySelector("#homePage_card-container__qfB3e")
       .scrollIntoView({ behavior: "smooth" });
   }
+
   return (
     <header alt="art by pch.vector on Freepik" ref={headerRef}>
       <Nav />
       <div id={classes["header-content"]}>
         {props.wordCloud && (
-          <div style={{ width: "100%", height: "100%" }}>
+          <div
+            className={classes["word-cloud-wrapper"]}
+            style={{ width: "80%", height: "100%" }}
+          >
             <ReactWordcloud options={options} words={props.wordCloud} />
           </div>
         )}
