@@ -19,9 +19,11 @@ const SearchForm = (props) => {
     });
   }
   function navigateToPage(e) {
-    navigate(`/interestOverTime/${e.target.textContent}`, {
-      state: { searchTerm: e.target.textContent, country: data.initials },
-    });
+    if (e.target.textContent === "") {
+      navigate(`/interestOverTime/${e.target.textContent}`, {
+        state: { searchTerm: e.target.textContent, country: data.initials },
+      });
+    }
   }
   function handleChange(e) {
     clearInterval(myInterval);
