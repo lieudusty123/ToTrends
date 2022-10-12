@@ -1,0 +1,109 @@
+@import "./vars";
+@mixin flexCenter($direction, $justify:center, $align:center) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}
+.form-content{ 
+        height: 300px; 
+    #form{
+            width: 100%;
+            .form-inputs{
+                @include flexCenter(row,flex-start ,center );
+                border: 2px solid rgb(212, 212, 212);
+                border-radius: 5px 5px 0 0;
+                width: 100%;
+                z-index: 1;
+                overflow: hidden;
+                input{
+                    box-sizing: border-box;
+                    padding-inline: .5rem;
+                    height: 3rem;
+                    font-size: 1.5rem;
+                    width: 80%;
+                    background-color: #e3f5fa;
+                    color: #0b6783;
+                    border: none;
+                    &:focus{
+                        outline: none;
+                    }
+                }
+                button{
+                    border: none;
+                    border-left: 1px solid rgb(212, 212, 212);
+                    background-color: $dark-color;
+                    color: white;
+                    height: 3rem;
+                    width: 20%;
+                    font-size: 1.2rem;
+                    transition: all .1s;
+                    &:hover{
+                        transition: all .1s;
+                        cursor: pointer;
+                        background-color: darken($dark-color,3);
+                        
+                    }
+                }
+            }
+        }
+}
+ul{
+    list-style: none;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    li{
+        @include flexCenter(row, flex-start, center);
+        border-bottom: 2px solid rgb(212, 212, 212);
+        padding-left: .5rem;
+        background-color: white;
+        width: calc(100% - .5rem);
+        height: 2.2rem;
+        &:hover{
+            cursor: pointer;
+            transition: .2s;
+            background-color: rgb(212, 212, 212);
+        }
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    .form-content{
+        @include flexCenter(column,flex-start ,flex-start );
+        width: 100%;
+            .type-writer-container{
+                width: 100%;
+                font-size: 2rem;
+        }
+    }
+}
+@media only screen and (max-width: 900px) {
+    .form-content{
+        @include flexCenter(column,flex-start ,flex-start );
+        width: 100%;
+            .type-writer-container{
+                width: 100%;
+                font-size: 2rem;
+        }
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    #form{
+        button{
+            width: 20%;
+        }
+    }
+    .form-content{
+        @include flexCenter(column,flex-start ,flex-start );
+        width: 100%;
+            .type-writer-container{
+                width: 100%;
+                font-size: 1.5rem;
+        }
+    }
+}

@@ -4,6 +4,7 @@ import classes from "./HeaderStyling/header.module.css";
 import SearchForm from "../../UI/SearchForm";
 import ReactWordcloud from "react-wordcloud";
 import arrowImage from "./HeaderStyling/sprites/up-arrow-svgrepo-com.svg";
+import image1 from "./HeaderStyling/sprites/2308.jpg";
 
 const Header = (props) => {
   const typeWriterEle = useRef();
@@ -40,10 +41,10 @@ const Header = (props) => {
     }
     function removeTypeWriter() {
       if (i > 0) {
-        let pleaseWork = typeWriterEle.current.innerHTML;
-        typeWriterEle.current.innerHTML = pleaseWork.slice(
+        let currentText = typeWriterEle.current.innerHTML;
+        typeWriterEle.current.innerHTML = currentText.slice(
           0,
-          pleaseWork.length - 1
+          currentText.length - 1
         );
         i--;
         setTimeout(removeTypeWriter, speed);
@@ -61,15 +62,14 @@ const Header = (props) => {
     }
     typeWriter();
   }, []);
-
   const options = {
-    colors: ["#FFF7E5", "#F9D3AB", "#f4cc72", "#ffbe2d", "#ffb100"],
+    colors: ["#F9D3AB", "#f4cc72", "#ffbe2d", "#ffb100", "gold"],
     enableTooltip: false,
     deterministic: true,
-    fontFamily: "impact",
-    fontSizes: [40, 80],
+    fontFamily: "Tahoma",
+    fontSizes: [20, 40],
     fontStyle: "normal",
-    fontWeight: "normal",
+    fontWeight: "900",
     padding: 2,
     rotations: 1,
     rotationAngles: [0],
@@ -77,21 +77,28 @@ const Header = (props) => {
     spiral: "archimedean",
     transitionDuration: 1000,
   };
-  function please() {
+  function scrollToCards() {
     document
       .querySelector("#homePage_card-container__qfB3e")
       .scrollIntoView({ behavior: "smooth" });
   }
 
   return (
-    <header alt="art by pch.vector on Freepik" ref={headerRef}>
+    <header
+      alt="art by pch.vector on Freepik"
+      ref={headerRef}
+      style={{
+        backgroundImage: `url(${image1})`,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        boxShadow: "inset 0 4px 5px -5px rgba(0,0,72,255)",
+      }}
+    >
       <Nav />
       <div id={classes["header-content"]}>
         {props.wordCloud && (
-          <div
-            className={classes["word-cloud-wrapper"]}
-            style={{ width: "80%", height: "100%" }}
-          >
+          <div className={classes["word-cloud-wrapper"]}>
             <ReactWordcloud options={options} words={props.wordCloud} />
           </div>
         )}
@@ -107,11 +114,11 @@ const Header = (props) => {
 
       {displayArrow && (
         <button
-          onClick={please}
+          onClick={scrollToCards}
           id={classes["jump-to-section"]}
           style={{
-            background: `url(${arrowImage}) #0b6783`,
-            backgroundSize: "50%",
+            background: `url(${arrowImage}) rgba(116,153,241,255)`,
+            backgroundSize: "30%",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
             transform: "rotate(180deg)",

@@ -1,0 +1,174 @@
+.form-content {
+  height: 300px;
+}
+
+.form-content #form {
+  width: 100%;
+}
+
+.form-content #form .form-inputs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 2px solid #d4d4d4;
+  border-radius: 5px 5px 0 0;
+  width: 100%;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.form-content #form .form-inputs input {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding-inline: .5rem;
+  height: 3rem;
+  font-size: 1.5rem;
+  width: 80%;
+  background-color: #e3f5fa;
+  color: #0b6783;
+  border: none;
+}
+
+.form-content #form .form-inputs input:focus {
+  outline: none;
+}
+
+.form-content #form .form-inputs button {
+  border: none;
+  border-left: 1px solid #d4d4d4;
+  background-color: #7499f1;
+  color: white;
+  height: 3rem;
+  width: 20%;
+  font-size: 1.2rem;
+  -webkit-transition: all .1s;
+  transition: all .1s;
+}
+
+.form-content #form .form-inputs button:hover {
+  -webkit-transition: all .1s;
+  transition: all .1s;
+  cursor: pointer;
+  background-color: #668ff0;
+}
+
+ul {
+  list-style: none;
+  position: relative;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-bottom: 2px solid #d4d4d4;
+  padding-left: .5rem;
+  background-color: white;
+  width: calc(100% - .5rem);
+  height: 2.2rem;
+}
+
+ul li:hover {
+  cursor: pointer;
+  -webkit-transition: .2s;
+  transition: .2s;
+  background-color: #d4d4d4;
+}
+
+@media only screen and (min-width: 900px) {
+  .form-content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    width: 100%;
+  }
+  .form-content .type-writer-container {
+    width: 100%;
+    font-size: 2rem;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .form-content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    width: 100%;
+  }
+  .form-content .type-writer-container {
+    width: 100%;
+    font-size: 2rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #form button {
+    width: 20%;
+  }
+  .form-content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    width: 100%;
+  }
+  .form-content .type-writer-container {
+    width: 100%;
+    font-size: 1.5rem;
+  }
+}
+/*# sourceMappingURL=searchForm.module.css.map */

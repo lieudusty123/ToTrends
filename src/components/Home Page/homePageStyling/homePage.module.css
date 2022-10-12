@@ -31,7 +31,7 @@ html {
   width: 100%;
   row-gap: 4rem;
   padding-block: 3rem;
-  background-color: #eaf3fa;
+  background: #d5e7f5;
 }
 
 #card-container .card {

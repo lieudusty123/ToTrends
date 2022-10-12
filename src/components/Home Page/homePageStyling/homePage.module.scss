@@ -27,11 +27,14 @@ html{
     width: 100%;
     row-gap: 4rem;   
     padding-block: 3rem;
-    background-color: $background-color;
+    // background-color: rgba(0,0,72,255);
+    background: darken($background-color, 5);
+    // background: rgb(0,0,72);
+    // background: linear-gradient(180deg, rgba(0,0,72,1) 0%, rgba(9,9,121,1) 36%, rgba(0,136,255,1) 100%);
     .card{
         display: flex;
         flex-direction: column;
-        background: white ;
+        background: white;
         border-radius: 2rem;
         width: 16rem;
         height: 23rem;

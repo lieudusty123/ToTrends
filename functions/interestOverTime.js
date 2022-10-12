@@ -40,6 +40,8 @@ exports.handler = async (event, context) => {
           currentDate.getMonth(),
           currentDate.getUTCDate()
         );
+      case "2004-present":
+        date = new Date("2004-01-01");
         break;
     }
     let obj = {};
@@ -65,12 +67,9 @@ exports.handler = async (event, context) => {
       obj,
       function (err, results) {
         if (err) {
-          returnedObj = {
-            statusCode: 500,
-            body: JSON.stringify(err),
-          };
           return err;
         } else {
+          console.log(results);
           return results;
         }
       }

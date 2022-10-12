@@ -16,7 +16,7 @@ const TrendsPage = () => {
   Chart.register(...registerables);
   const data = useContext(context);
   const location = useLocation();
-  const pleaseWork = useRef();
+  const graphRef = useRef();
   const [graphState, setGraphState] = useState("loading");
   const [graphTerms, setGraphTerms] = useState({
     country: data.initials,
@@ -123,7 +123,7 @@ const TrendsPage = () => {
           };
         }
 
-        let targetElement = pleaseWork.current;
+        let targetElement = graphRef.current;
         let config = {
           type: "line",
           data: datas,
@@ -205,7 +205,9 @@ const TrendsPage = () => {
   return (
     <div className={classes.root}>
       <Nav hideCountries={true} />
-      <SearchForm />
+      <header className={classes.header}>
+        <SearchForm />
+      </header>
       <div className={classes["selectors-container"]}>
         <form onSubmit={handleCompare} className={classes["inner-form"]}>
           <input
@@ -238,7 +240,7 @@ const TrendsPage = () => {
               />
             </div>
           ))}
-        <canvas className={classes.graph} ref={pleaseWork}></canvas>
+        <canvas className={classes.graph} ref={graphRef}></canvas>
       </div>
     </div>
   );
