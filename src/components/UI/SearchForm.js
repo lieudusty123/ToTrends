@@ -19,7 +19,7 @@ const SearchForm = (props) => {
     });
   }
   function navigateToPage(e) {
-    if (e.target.textContent === "") {
+    if (e.target.textContent !== "") {
       navigate(`/interestOverTime/${e.target.textContent}`, {
         state: { searchTerm: e.target.textContent, country: data.initials },
       });
