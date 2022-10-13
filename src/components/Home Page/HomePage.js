@@ -103,7 +103,10 @@ const HomePage = () => {
 
   return (
     <Fragment>
-      <Header wordCloud={wordCloudData} />
+      <Header
+        wordCloud={wordCloudData}
+        areCardsShown={mappedItems.length > 0 ? true : false}
+      />
       <div id={classes["card-container"]}>
         {mappedItems.length === 0 ? "Loading..." : mappedItems}
       </div>

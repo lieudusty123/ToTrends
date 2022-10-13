@@ -112,7 +112,7 @@ const Header = (props) => {
         </SearchForm>
       </div>
 
-      {displayArrow && (
+      {props.areCardsShown && displayArrow && (
         <button
           onClick={scrollToCards}
           id={classes["jump-to-section"]}
