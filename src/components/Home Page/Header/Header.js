@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Nav from "./Nav";
 import classes from "./HeaderStyling/header.module.css";
+import homePageClasses from "../homePageStyling/homePage.module.css";
 import SearchForm from "../../UI/SearchForm";
 import ReactWordcloud from "react-wordcloud";
 import arrowImage from "./HeaderStyling/sprites/up-arrow-svgrepo-com.svg";
@@ -79,7 +80,7 @@ const Header = (props) => {
   };
   function scrollToCards() {
     document
-      .querySelector("#homePage_card-container__qfB3e")
+      .querySelector(`#${homePageClasses["card-container"]}`)
       .scrollIntoView({ behavior: "smooth" });
   }
 
