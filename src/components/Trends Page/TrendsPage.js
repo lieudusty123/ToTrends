@@ -205,29 +205,30 @@ const TrendsPage = () => {
   return (
     <div className={classes.root}>
       <Nav hideCountries={true} />
-      <header className={classes.header}>
+      <div className={classes.formContainer}>
         <SearchForm />
-      </header>
-      <div className={classes["selectors-container"]}>
-        <form onSubmit={handleCompare} className={classes["inner-form"]}>
-          <input
-            placeholder="Compare with..."
-            className={classes.inputs}
-            onChange={(e) => {
-              setCompareInput(e.target.value);
-            }}
-            value={compareInput}
-          />
-          <button className={classes.inputs}>Compare!</button>
-        </form>
-        <div className={classes.selectors}>
-          <DateRange inputHandler={dateSelected} />
-          <CountrySelector
-            className={classes.inputs}
-            onCountrySelect={countrySelected}
-          />
+        <div className={classes["selectors-container"]}>
+          <div className={classes.selectors}>
+            <DateRange inputHandler={dateSelected} />
+            <CountrySelector
+              className={classes.inputs}
+              onCountrySelect={countrySelected}
+            />
+          </div>
+          <form onSubmit={handleCompare} className={classes["inner-form"]}>
+            <input
+              placeholder="Compare with..."
+              className={classes.inputs}
+              onChange={(e) => {
+                setCompareInput(e.target.value);
+              }}
+              value={compareInput}
+            />
+            <button className={classes.inputs}>Compare!</button>
+          </form>
         </div>
       </div>
+
       <div className={classes.graphContainer}>
         {(graphState === "loading" && <div>Loading...</div>) ||
           (graphState === "failed" && (

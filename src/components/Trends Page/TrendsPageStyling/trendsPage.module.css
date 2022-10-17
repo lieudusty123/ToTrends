@@ -10,19 +10,14 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  background: #d5e7f5;
   height: 100vh;
-  background: linear-gradient(-135deg, #eaf3fa 70%, #afc3ff 110%);
-}
-
-.root .header {
-  height: 250px;
-  width: 50%;
 }
 
 .root .selectors-container {
@@ -82,6 +77,11 @@
 
 .root .graphContainer {
   width: 60vw;
+}
+
+.formContainer {
+  justify-self: flex-start;
+  z-index: 1;
 }
 
 .error-container {

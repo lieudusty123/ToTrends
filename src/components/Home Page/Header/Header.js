@@ -3,9 +3,9 @@ import Nav from "./Nav";
 import classes from "./HeaderStyling/header.module.css";
 import homePageClasses from "../homePageStyling/homePage.module.css";
 import SearchForm from "../../UI/SearchForm";
-import ReactWordcloud from "react-wordcloud";
 import arrowImage from "./HeaderStyling/sprites/up-arrow-svgrepo-com.svg";
 import image1 from "./HeaderStyling/sprites/2308.jpg";
+import WordCloud from "./WordCloud";
 
 const Header = (props) => {
   const typeWriterEle = useRef();
@@ -20,9 +20,9 @@ const Header = (props) => {
   }
   useEffect(() => {
     let i = 0;
-    var txtArr = ["trends", "events", "searches", "stories"]; /* The text */
+    let txtArr = ["trends", "events", "searches", "stories"]; /* The text */
     let currentWord = 0;
-    var speed = 100;
+    const speed = 100;
 
     async function typeWriter() {
       if (i < txtArr[currentWord].length) {
@@ -63,30 +63,15 @@ const Header = (props) => {
     }
     typeWriter();
   }, []);
-  const options = {
-    colors: ["#F9D3AB", "#f4cc72", "#ffbe2d", "#ffb100", "gold"],
-    enableTooltip: false,
-    deterministic: true,
-    fontFamily: "Tahoma",
-    fontSizes: [20, 40],
-    fontStyle: "normal",
-    fontWeight: "900",
-    padding: 2,
-    rotations: 1,
-    rotationAngles: [0],
-    scale: "sqrt",
-    spiral: "archimedean",
-    transitionDuration: 1000,
-  };
+
   function scrollToCards() {
     document
       .querySelector(`#${homePageClasses["card-container"]}`)
       .scrollIntoView({ behavior: "smooth" });
   }
-
+  console.log(props.wordCloud);
   return (
     <header
-      alt="art by pch.vector on Freepik"
       ref={headerRef}
       style={{
         backgroundImage: `url(${image1})`,
@@ -100,7 +85,8 @@ const Header = (props) => {
       <div id={classes["header-content"]}>
         {props.wordCloud && (
           <div className={classes["word-cloud-wrapper"]}>
-            <ReactWordcloud options={options} words={props.wordCloud} />
+            <WordCloud data={props.wordCloud} />
+            {/* <ReactWordcloud options={options} words={props.wordCloud} /> */}
           </div>
         )}
 

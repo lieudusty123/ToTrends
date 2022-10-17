@@ -54,7 +54,7 @@ const HomePage = () => {
           traffic = +element.formattedTraffic.slice(0, -2) * 1000;
         else traffic = +element.formattedTraffic.slice(0, -2);
         wordCloudDataObj.push({
-          text: element.title.query,
+          name: element.title.query,
           value: traffic,
         });
       });

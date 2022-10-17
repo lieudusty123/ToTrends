@@ -1,6 +1,13 @@
 @import "./_graph.module.scss";
 @import "../../UI/styling/vars";
 
+@mixin flex($direction, $justify:center, $align:center) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}
+
 @mixin flexCenter($direction){
     display: flex;
     flex-direction: $direction;
@@ -9,13 +16,9 @@
 }
 
 .root{
-    @include flexCenter(column);
+    @include flex(column, space-evenly, center);
+    background: darken($background-color, 5);
     height: 100vh;
-    background: linear-gradient(-135deg, $background-color 70%, $light-color 110%) ;
-    .header{
-        height: 250px;
-        width: 50%;
-    }
     .selectors-container{
         @include flexCenter(row);
         .selectors{
@@ -55,6 +58,10 @@
     }
 }
 
+.formContainer{
+    justify-self: flex-start;
+    z-index: 1;
+}
 
 .error-container{
     margin-top: 4rem;

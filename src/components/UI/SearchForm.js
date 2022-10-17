@@ -76,6 +76,7 @@ const SearchForm = (props) => {
       {props.children}
 
       <div id={searchStyles.form}>
+        {/* <div id={searchStyles.please}> */}
         <div
           className={searchStyles["form-inputs"]}
           style={
@@ -88,19 +89,20 @@ const SearchForm = (props) => {
         >
           <input type="text" value={searchValue} onChange={handleChange} />
           <button>Submit</button>
+          <ul
+            style={
+              autoComplete.length === 0
+                ? { border: "none" }
+                : {
+                    borderRight: "2px solid rgb(212, 212, 212)",
+                    borderLeft: "2px solid rgb(212, 212, 212)",
+                  }
+            }
+          >
+            {autoComplete}
+          </ul>
         </div>
-        <ul
-          style={
-            autoComplete.length === 0
-              ? { border: "none" }
-              : {
-                  borderRight: "2px solid rgb(212, 212, 212)",
-                  borderLeft: "2px solid rgb(212, 212, 212)",
-                }
-          }
-        >
-          {autoComplete}
-        </ul>
+        {/* </div> */}
       </div>
     </form>
   );
