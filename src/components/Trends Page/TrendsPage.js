@@ -9,6 +9,8 @@ import DateRange from "./DateRange";
 import CountrySelector from "../Home Page/Header/CountrySelector";
 import errorImage from "./TrendsPageStyling/sprites/site_support.png";
 import Nav from "../Home Page/Header/Nav";
+import image from "../Home Page/Header/HeaderStyling/sprites/2308.jpg";
+import Footer from "../UI/Footer";
 
 let chart = {};
 const TrendsPage = () => {
@@ -34,6 +36,7 @@ const TrendsPage = () => {
   }
   getInfoFromUrl();
 
+  // gets data and print to graph
   useEffect(() => {
     const fetchInterestOverTime = async () => {
       if (chart.id !== undefined) {
@@ -108,6 +111,7 @@ const TrendsPage = () => {
             chartData.data.push(date.value[0]);
             chartData.dates.push(date.formattedTime);
           });
+          // chart.defaults.global.defaultFontColor = "#FFFFFF";
           datas = {
             labels: chartData.dates,
             datasets: [
@@ -115,9 +119,10 @@ const TrendsPage = () => {
                 label: chartData.dates,
                 data: chartData.data,
                 fill: true,
-                borderColor: "rgb(46, 123, 255)",
+                borderColor: "rgb(255, 255, 255)",
+                defaultFontColor: "#FFFFFF",
                 tension: 0.3,
-                backgroundColor: "rgba(56, 97, 223, 0.39)",
+                backgroundColor: "rgba(255, 255, 255, 0.39)",
               },
             ],
           };
@@ -143,6 +148,10 @@ const TrendsPage = () => {
                 },
               },
             },
+            labels: {
+              labelTextColor: "#FFFFFF",
+            },
+            maintainAspectRatio: false,
             responsive: true,
             elements: {
               point: {
@@ -159,6 +168,7 @@ const TrendsPage = () => {
             },
           };
         }
+        Chart.defaults.color = () => "#FFF";
         chart = new Chart(targetElement, config);
       }
     };
@@ -203,31 +213,40 @@ const TrendsPage = () => {
     }
   }
   return (
-    <div className={classes.root}>
+    <div
+      className={classes.root}
+      style={{
+        background: `url(${image})`,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+      }}
+    >
       <Nav hideCountries={true} />
-      <header className={classes.header}>
+      <div className={classes.formContainer}>
         <SearchForm />
-      </header>
-      <div className={classes["selectors-container"]}>
-        <form onSubmit={handleCompare} className={classes["inner-form"]}>
-          <input
-            placeholder="Compare with..."
-            className={classes.inputs}
-            onChange={(e) => {
-              setCompareInput(e.target.value);
-            }}
-            value={compareInput}
-          />
-          <button className={classes.inputs}>Compare!</button>
-        </form>
-        <div className={classes.selectors}>
-          <DateRange inputHandler={dateSelected} />
-          <CountrySelector
-            className={classes.inputs}
-            onCountrySelect={countrySelected}
-          />
+        <div className={classes["selectors-container"]}>
+          <div className={classes.selectors}>
+            <DateRange inputHandler={dateSelected} />
+            <CountrySelector
+              className={classes.inputs}
+              onCountrySelect={countrySelected}
+            />
+          </div>
+          <form onSubmit={handleCompare} className={classes["inner-form"]}>
+            <input
+              placeholder="Compare with..."
+              className={classes.inputs}
+              onChange={(e) => {
+                setCompareInput(e.target.value);
+              }}
+              value={compareInput}
+            />
+            <button className={classes.inputs}>Compare!</button>
+          </form>
         </div>
       </div>
+
       <div className={classes.graphContainer}>
         {(graphState === "loading" && <div>Loading...</div>) ||
           (graphState === "failed" && (
@@ -242,6 +261,7 @@ const TrendsPage = () => {
           ))}
         <canvas className={classes.graph} ref={graphRef}></canvas>
       </div>
+      <Footer />
     </div>
   );
 };

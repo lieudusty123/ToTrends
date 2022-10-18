@@ -1,6 +1,13 @@
 @import "./_graph.module.scss";
 @import "../../UI/styling/vars";
 
+@mixin flex($direction, $justify:center, $align:center) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}
+
 @mixin flexCenter($direction){
     display: flex;
     flex-direction: $direction;
@@ -9,15 +16,13 @@
 }
 
 .root{
-    @include flexCenter(column);
+    @include flex(column, space-evenly, center);
+    background: darken($background-color, 5);
     height: 100vh;
-    background: linear-gradient(-135deg, $background-color 70%, $light-color 110%) ;
-    .header{
-        height: 250px;
-        width: 50%;
-    }
+    width: 100vw;
     .selectors-container{
         @include flexCenter(row);
+        margin-top: 1rem;
         .selectors{
             background-color: white;
             border-color: $highlight-color;
@@ -50,11 +55,14 @@
             }
         }
 }
-    .graphContainer{
-        width: 60vw;
-    }
+    
 }
 
+.formContainer{
+    width: 50%;
+    justify-self: flex-start;
+    z-index: 1;
+}
 
 .error-container{
     margin-top: 4rem;
@@ -68,5 +76,24 @@
     }
     .error-image{
         width: 100%;
+    }
+}
+
+@media only screen and (min-width: 1400px) {
+    .graphContainer{
+        width: 60vw;
+        height: 60vh;
+    }
+}
+@media only screen and (max-width: 1400px) {
+    .graphContainer{
+        width: 80vw;
+        height: 50vh;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .graphContainer{
+        width: 90vw;
+        height: 40vh;
     }
 }

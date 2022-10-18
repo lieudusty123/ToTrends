@@ -10,19 +10,15 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  background: #d5e7f5;
   height: 100vh;
-  background: linear-gradient(-135deg, #eaf3fa 70%, #afc3ff 110%);
-}
-
-.root .header {
-  height: 250px;
-  width: 50%;
+  width: 100vw;
 }
 
 .root .selectors-container {
@@ -39,6 +35,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin-top: 1rem;
 }
 
 .root .selectors-container .selectors {
@@ -80,8 +77,10 @@
   cursor: pointer;
 }
 
-.root .graphContainer {
-  width: 60vw;
+.formContainer {
+  width: 50%;
+  justify-self: flex-start;
+  z-index: 1;
 }
 
 .error-container {
@@ -106,5 +105,26 @@
 
 .error-container .error-image {
   width: 100%;
+}
+
+@media only screen and (min-width: 1400px) {
+  .graphContainer {
+    width: 60vw;
+    height: 60vh;
+  }
+}
+
+@media only screen and (max-width: 1400px) {
+  .graphContainer {
+    width: 80vw;
+    height: 50vh;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .graphContainer {
+    width: 90vw;
+    height: 40vh;
+  }
 }
 /*# sourceMappingURL=trendsPage.module.css.map */

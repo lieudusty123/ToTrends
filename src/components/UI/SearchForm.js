@@ -2,8 +2,9 @@ import searchStyles from "./styling/searchForm.module.css";
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import context from "../../contextAPI/context";
+import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
-let myInterval = setInterval(() => {}, 1000);
+let myInterval = setInterval(() => {}, 200);
 const SearchForm = (props) => {
   const [searchValue, setSearchValue] = useState("");
   const [lastCallValue, setLastCallValue] = useState("");
@@ -14,16 +15,17 @@ const SearchForm = (props) => {
 
   function handleSubmit(event) {
     event.preventDefault();
-    navigate(`/interestOverTime/${searchValue}`, {
-      state: { searchTerm: searchValue, country: data.initials },
-    });
-  }
-  function navigateToPage(e) {
-    if (e.target.textContent !== "") {
-      navigate(`/interestOverTime/${e.target.textContent}`, {
-        state: { searchTerm: e.target.textContent, country: data.initials },
+    let str = searchValue.replace(/\s+/g, " ").trim();
+    if (str.length > 1) {
+      navigate(`/interestOverTime/${searchValue}`, {
+        state: { searchTerm: searchValue, country: data.initials },
       });
     }
+  }
+  function navigateToPage(e) {
+    navigate(`/interestOverTime/${e.target.textContent}`, {
+      state: { searchTerm: e.target.textContent, country: data.initials },
+    });
   }
   function handleChange(e) {
     clearInterval(myInterval);
@@ -33,19 +35,22 @@ const SearchForm = (props) => {
         e.target.value !== lastCallValue &&
         e.target.value.length > searchValue.length
       ) {
+        console.log("in");
         const fetchData = async () => {
           const response = await axios.get(
             `/.netlify/functions/autoComplete?term=${e.target.value}`
           );
           let termsArr = [];
+          console.log(response.data.default);
           response.data.default.topics.forEach((term) => {
             if (
               termsArr.indexOf(term.title) < 0 &&
-              mappedAutoComplete.length <= 5
+              mappedAutoComplete.length <= 5 &&
+              term.title.toLowerCase().indexOf(searchValue.toLowerCase()) > -1
             ) {
               termsArr.push(term.title);
               mappedAutoComplete.push(
-                <li onClick={navigateToPage} key={term.title}>
+                <li onClick={navigateToPage} key={uuidv4()}>
                   {term.title}
                 </li>
               );
@@ -58,7 +63,7 @@ const SearchForm = (props) => {
       } else if (e.target.value.length === 0) {
         setAutoComplete([]);
       }
-    }, 500);
+    }, 200);
     e.preventDefault();
     setLastCallValue(e.target.value);
     setSearchValue(e.target.value);
@@ -66,27 +71,38 @@ const SearchForm = (props) => {
   return (
     <form
       className={searchStyles["form-content"]}
-      onSubmit={(event) => handleSubmit(event) & props.handleSearch}
+      onSubmit={(event) => handleSubmit(event)}
     >
       {props.children}
 
       <div id={searchStyles.form}>
-        <div className={searchStyles["form-inputs"]}>
-          <input type="text" value={searchValue} onChange={handleChange} />
-          <button>Submit</button>
-        </div>
-        <ul
+        {/* <div id={searchStyles.please}> */}
+        <div
+          className={searchStyles["form-inputs"]}
           style={
             autoComplete.length === 0
-              ? { border: "none" }
+              ? { borderRadius: "5px 5px 5px 5px" }
               : {
-                  borderRight: "2px solid rgb(212, 212, 212)",
-                  borderLeft: "2px solid rgb(212, 212, 212)",
+                  borderRadius: "5px 5px 0 0",
                 }
           }
         >
-          {autoComplete}
-        </ul>
+          <input type="text" value={searchValue} onChange={handleChange} />
+          <button>Submit</button>
+          <ul
+            style={
+              autoComplete.length === 0
+                ? { border: "none" }
+                : {
+                    borderRight: "2px solid rgb(212, 212, 212)",
+                    borderLeft: "2px solid rgb(212, 212, 212)",
+                  }
+            }
+          >
+            {autoComplete}
+          </ul>
+        </div>
+        {/* </div> */}
       </div>
     </form>
   );

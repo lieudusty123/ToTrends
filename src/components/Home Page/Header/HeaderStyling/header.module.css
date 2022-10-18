@@ -85,6 +85,7 @@ nav .date-selector {
   max-height: 100%;
   background-color: white;
   border: none;
+  border-radius: 5px;
   color: #7499f1;
   padding: .8rem;
 }
@@ -98,7 +99,6 @@ nav .date-selector:focus {
 }
 
 #header-content {
-  margin-top: 10rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -112,6 +112,8 @@ nav .date-selector:focus {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
+  position: absolute;
+  top: 30%;
 }
 
 #header-content .type-writer-container {
@@ -172,6 +174,10 @@ nav .date-selector:focus {
 
 #header-content .word-cloud-wrapper {
   height: 200px;
+}
+
+.form-content {
+  height: 300px;
 }
 
 #jump-to-section {

@@ -60,7 +60,6 @@ exports.handler = async (event, context) => {
       };
     }
 
-    console.log(obj);
     console.log("date", date);
     console.log("currentDate", currentDate);
     const data = await googleTrends.interestOverTime(
@@ -69,7 +68,6 @@ exports.handler = async (event, context) => {
         if (err) {
           return err;
         } else {
-          console.log(results);
           return results;
         }
       }

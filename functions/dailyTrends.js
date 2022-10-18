@@ -1,9 +1,7 @@
 const axios = require("axios");
 const googleTrends = require("google-trends-api");
 
-console.log("0. dailyTrends outside handler");
 exports.handler = async (event, context) => {
-  console.log("1. dailyTrends inside handler");
   try {
     const country = event.queryStringParameters.country;
     const currentDate = new Date();

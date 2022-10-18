@@ -53,6 +53,7 @@ nav{
         max-height: 100%;
         background-color: white;
         border: none;
+        border-radius: 5px;
         color: $dark-color;
         padding: .8rem;
         &:hover{
@@ -65,8 +66,9 @@ nav{
 }
 
 #header-content{
-    margin-top: 10rem;
     @include flexCenter(column,center ,flex-start);
+    position: absolute;
+    top: 30%;
     .type-writer-container{
         color: $dark-color;
         margin-bottom: 1rem;
@@ -95,6 +97,11 @@ nav{
         height: 200px;
     }
 }
+
+.form-content{
+    height: 300px; 
+}
+
 #jump-to-section{
     width: 3rem;
     height: 3rem;
