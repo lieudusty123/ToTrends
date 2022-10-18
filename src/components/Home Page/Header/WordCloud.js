@@ -18,24 +18,34 @@ const WordCloud = (props) => {
     let highestValue = getHigh();
 
     let colors = ["#F9D3AB", "#f4cc72", "#ffbe2d", "#ffb100", "gold"];
-
+    // let defaultColor = 'hsl(51,100,50)';
     for (const key in props.data) {
       let precentage = props.data[key].value / highestValue;
+      let color = `hsl(51,${
+        100 * precentage > 40
+          ? 100 * precentage
+          : Math.floor(Math.random() * 10 + 40)
+      }%,50%)`;
+      console.log(color);
       let wordFontSize =
-        50 * precentage > 15
-          ? 50 * precentage
-          : 15 + Math.floor(Math.random() * 3);
+        40 * precentage > 18
+          ? 40 * precentage
+          : 18 + Math.floor(Math.random() * 3);
 
       map.push(
         <span
           style={{
             fontSize: `${wordFontSize}px`,
-            padding: "5px",
+            paddingInline: "10px",
+            display: "inline-block",
             whiteSpace: "nowrap",
             textAlign: "center",
             fontWeight: "900",
             fontFamily: "Tahoma",
             color: `${colors[Math.floor(Math.random() * colors.length)]}`,
+            transform: `translate(${Math.floor(
+              Math.random() * 10
+            )}px, ${Math.floor(Math.random() * 10)}px)`,
           }}
           key={props.data[key].name}
         >

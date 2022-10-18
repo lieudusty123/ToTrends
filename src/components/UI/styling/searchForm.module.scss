@@ -7,14 +7,15 @@
 }
 .form-content{ 
     #form{
+            
             width: 100%;
             .form-inputs{
                 @include flexCenter(row,flex-start ,center );
+                position: relative;
                 border: 2px solid rgb(212, 212, 212);
                 border-radius: 5px 5px 0 0;
                 width: 100%;
                 z-index: 1;
-                overflow: hidden;
                 input{
                     box-sizing: border-box;
                     padding-inline: .5rem;
@@ -51,8 +52,12 @@ ul{
     list-style: none;
     position: absolute;
     padding: 0;
-    margin-top: 250px;
-    width: inherit;
+    width: 100%;
+    z-index: 10;
+    top: 100%;
+    margin: 0;
+    left: -2px;
+    overflow: hidden;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     li{

@@ -16,11 +16,11 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: relative;
   border: 2px solid #d4d4d4;
   border-radius: 5px 5px 0 0;
   width: 100%;
   z-index: 1;
-  overflow: hidden;
 }
 
 .form-content #form .form-inputs input {
@@ -62,8 +62,12 @@ ul {
   list-style: none;
   position: absolute;
   padding: 0;
-  margin-top: 250px;
-  width: inherit;
+  width: 100%;
+  z-index: 10;
+  top: 100%;
+  margin: 0;
+  left: -2px;
+  overflow: hidden;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }

@@ -19,8 +19,10 @@
     @include flex(column, space-evenly, center);
     background: darken($background-color, 5);
     height: 100vh;
+    width: 100vw;
     .selectors-container{
         @include flexCenter(row);
+        margin-top: 1rem;
         .selectors{
             background-color: white;
             border-color: $highlight-color;
@@ -59,6 +61,7 @@
 }
 
 .formContainer{
+    width: 50%;
     justify-self: flex-start;
     z-index: 1;
 }

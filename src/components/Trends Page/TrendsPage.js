@@ -9,6 +9,7 @@ import DateRange from "./DateRange";
 import CountrySelector from "../Home Page/Header/CountrySelector";
 import errorImage from "./TrendsPageStyling/sprites/site_support.png";
 import Nav from "../Home Page/Header/Nav";
+import image from "../Home Page/Header/HeaderStyling/sprites/2308.jpg";
 
 let chart = {};
 const TrendsPage = () => {
@@ -34,6 +35,7 @@ const TrendsPage = () => {
   }
   getInfoFromUrl();
 
+  // gets data and print to graph
   useEffect(() => {
     const fetchInterestOverTime = async () => {
       if (chart.id !== undefined) {
@@ -108,6 +110,7 @@ const TrendsPage = () => {
             chartData.data.push(date.value[0]);
             chartData.dates.push(date.formattedTime);
           });
+          // chart.defaults.global.defaultFontColor = "#FFFFFF";
           datas = {
             labels: chartData.dates,
             datasets: [
@@ -115,9 +118,10 @@ const TrendsPage = () => {
                 label: chartData.dates,
                 data: chartData.data,
                 fill: true,
-                borderColor: "rgb(46, 123, 255)",
+                borderColor: "rgb(255, 255, 255)",
+                defaultFontColor: "#FFFFFF",
                 tension: 0.3,
-                backgroundColor: "rgba(56, 97, 223, 0.39)",
+                backgroundColor: "rgba(255, 255, 255, 0.39)",
               },
             ],
           };
@@ -143,6 +147,9 @@ const TrendsPage = () => {
                 },
               },
             },
+            labels: {
+              labelTextColor: "#FFFFFF",
+            },
             responsive: true,
             elements: {
               point: {
@@ -159,6 +166,7 @@ const TrendsPage = () => {
             },
           };
         }
+        Chart.defaults.color = () => "#FFF";
         chart = new Chart(targetElement, config);
       }
     };
@@ -203,7 +211,15 @@ const TrendsPage = () => {
     }
   }
   return (
-    <div className={classes.root}>
+    <div
+      className={classes.root}
+      style={{
+        background: `url(${image})`,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+      }}
+    >
       <Nav hideCountries={true} />
       <div className={classes.formContainer}>
         <SearchForm />
