@@ -77,10 +77,6 @@
   cursor: pointer;
 }
 
-.root .graphContainer {
-  width: 60vw;
-}
-
 .formContainer {
   width: 50%;
   justify-self: flex-start;
@@ -109,5 +105,26 @@
 
 .error-container .error-image {
   width: 100%;
+}
+
+@media only screen and (min-width: 1400px) {
+  .graphContainer {
+    width: 60vw;
+    height: 60vh;
+  }
+}
+
+@media only screen and (max-width: 1400px) {
+  .graphContainer {
+    width: 80vw;
+    height: 50vh;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .graphContainer {
+    width: 90vw;
+    height: 40vh;
+  }
 }
 /*# sourceMappingURL=trendsPage.module.css.map */

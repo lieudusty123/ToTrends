@@ -1,4 +1,5 @@
 @import "./vars";
+@import "./footer";
 @mixin flexCenter($direction, $justify:center, $align:center) {
     display: flex;
     flex-direction: $direction;

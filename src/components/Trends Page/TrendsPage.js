@@ -10,6 +10,7 @@ import CountrySelector from "../Home Page/Header/CountrySelector";
 import errorImage from "./TrendsPageStyling/sprites/site_support.png";
 import Nav from "../Home Page/Header/Nav";
 import image from "../Home Page/Header/HeaderStyling/sprites/2308.jpg";
+import Footer from "../UI/Footer";
 
 let chart = {};
 const TrendsPage = () => {
@@ -150,6 +151,7 @@ const TrendsPage = () => {
             labels: {
               labelTextColor: "#FFFFFF",
             },
+            maintainAspectRatio: false,
             responsive: true,
             elements: {
               point: {
@@ -259,6 +261,7 @@ const TrendsPage = () => {
           ))}
         <canvas className={classes.graph} ref={graphRef}></canvas>
       </div>
+      <Footer />
     </div>
   );
 };

@@ -4,7 +4,7 @@ import { useContext, useState } from "react";
 import context from "../../contextAPI/context";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
-let myInterval = setInterval(() => {}, 1000);
+let myInterval = setInterval(() => {}, 200);
 const SearchForm = (props) => {
   const [searchValue, setSearchValue] = useState("");
   const [lastCallValue, setLastCallValue] = useState("");
@@ -63,7 +63,7 @@ const SearchForm = (props) => {
       } else if (e.target.value.length === 0) {
         setAutoComplete([]);
       }
-    }, 1000);
+    }, 200);
     e.preventDefault();
     setLastCallValue(e.target.value);
     setSearchValue(e.target.value);
