@@ -5,6 +5,7 @@ import classes from "./homePageStyling/homePage.module.css";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import placeHolderImage from "./homePageStyling/sprites/placeholder.png";
+import Footer from "../UI/Footer";
 
 const HomePage = () => {
   const data = useContext(context);
@@ -110,6 +111,11 @@ const HomePage = () => {
       <div id={classes["card-container"]}>
         {mappedItems.length === 0 ? "Loading..." : mappedItems}
       </div>
+      {mappedItems.length > 0 && (
+        <footer id={classes["main-footer"]}>© Made by Omer Ezra. 2022</footer>
+      )}
+
+      {/* <Footer /> */}
     </Fragment>
   );
 };

@@ -68,7 +68,6 @@ nav{
 #header-content{
     @include flexCenter(column,center ,flex-start);
     position: absolute;
-    top: 30%;
     .type-writer-container{
         color: $dark-color;
         margin-bottom: 1rem;
@@ -92,9 +91,20 @@ nav{
             }
         }
     }
-    
     .word-cloud-wrapper{
-        height: 200px;
+        margin-bottom: 3rem;
+
+    @include flexCenter(row,center ,center);
+        div{
+            @include flexCenter(row,center ,center);
+            // width: 95%;
+            // height: 90%;
+            flex-wrap: wrap;
+
+        }
+        background-color: rgba(0, 0, 0, 0.212);
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
     }
 }
 
@@ -136,6 +146,7 @@ nav{
     #header-content{
         @include flexCenter(column,center ,center );
         min-width: 650px;
+        top: 30%;
         width: 50%;
                 .type-writer-container{
                     width: 100%;
@@ -144,6 +155,7 @@ nav{
     }
     .word-cloud-wrapper{
         width: 700px;
+        height: 200px;
     }
 }
 @media only screen and (max-width: 900px) {
@@ -157,6 +169,7 @@ nav{
         }
     }
     #header-content{
+        top: 25%;
         width: 80%;
                 .type-writer-container{
                     width: 100%;
@@ -165,11 +178,13 @@ nav{
     }
     .word-cloud-wrapper{
         width: 600px;
+        height: 200px;
     }
 }
 @media only screen and (max-width: 750px) {
     .word-cloud-wrapper{
         width: 500px;
+        height: 300px;
     }
 }
 @media only screen and (max-width: 600px) {
@@ -184,6 +199,7 @@ nav{
 
     #header-content{
         width: 90%;
+        top: 15%;
         @include flexCenter(column,center ,center );
                 .type-writer-container{
                     width: 100%;
@@ -191,6 +207,7 @@ nav{
             }
     }
     .word-cloud-wrapper{
-        width: 400px;
+        width: 80vw;
+        height: 300px;
     }
 }

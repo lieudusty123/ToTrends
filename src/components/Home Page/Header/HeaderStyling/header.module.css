@@ -113,7 +113,6 @@ nav .date-selector:focus {
       -ms-flex-align: start;
           align-items: flex-start;
   position: absolute;
-  top: 30%;
 }
 
 #header-content .type-writer-container {
@@ -173,7 +172,42 @@ nav .date-selector:focus {
 }
 
 #header-content .word-cloud-wrapper {
-  height: 200px;
+  margin-bottom: 3rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: rgba(0, 0, 0, 0.212);
+  -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+
+#header-content .word-cloud-wrapper div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .form-content {
@@ -246,6 +280,7 @@ nav .date-selector:focus {
         -ms-flex-align: center;
             align-items: center;
     min-width: 650px;
+    top: 30%;
     width: 50%;
   }
   #header-content .type-writer-container {
@@ -254,6 +289,7 @@ nav .date-selector:focus {
   }
   .word-cloud-wrapper {
     width: 700px;
+    height: 200px;
   }
 }
 
@@ -264,6 +300,7 @@ nav .date-selector:focus {
     max-height: 40vh;
   }
   #header-content {
+    top: 25%;
     width: 80%;
   }
   #header-content .type-writer-container {
@@ -272,12 +309,14 @@ nav .date-selector:focus {
   }
   .word-cloud-wrapper {
     width: 600px;
+    height: 200px;
   }
 }
 
 @media only screen and (max-width: 750px) {
   .word-cloud-wrapper {
     width: 500px;
+    height: 300px;
   }
 }
 
@@ -289,6 +328,7 @@ nav .date-selector:focus {
   }
   #header-content {
     width: 90%;
+    top: 15%;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -308,7 +348,8 @@ nav .date-selector:focus {
     font-size: 1.5rem;
   }
   .word-cloud-wrapper {
-    width: 400px;
+    width: 80vw;
+    height: 300px;
   }
 }
 /*# sourceMappingURL=header.module.css.map */

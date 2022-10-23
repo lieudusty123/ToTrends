@@ -22,9 +22,9 @@
     width: 100vw;
     .selectors-container{
         @include flexCenter(row);
+        flex-wrap: wrap;
         margin-top: 1rem;
         .selectors{
-            background-color: white;
             border-color: $highlight-color;
             color: $highlight-color;
             &:focus{      
@@ -32,26 +32,50 @@
             }
             select{
                 height: 50px;
+                background-color: $background-color;
+                border: 2px solid $dark-color;
+                font-size: 1rem;
+                color: $dark-color;
+                padding: .8rem;
+                &:hover{
+                    cursor: pointer;
+                }
+                &:focus{      
+                    outline: none;
+                }
             }
         }
         form{
             height: 50px;
+            position: relative;
+            @include flexCenter(row);
             input{
                 box-sizing: border-box;
                 padding: 0;
                 padding-left: .5rem;
+                font-size: 1.5rem;
                 height: 100%;
-                border: 1px solid dodgerblue;
+                background-color: $background-color;
+                color: #0b6783;
+                border: none;
+                &:focus{
+                    outline: none;
+                }
             }
             button{ 
                 height: 100%;
-                width: 100px;
-                border: 1px solid $dark-color;
+                border: none;
                 background-color: $dark-color;
                 color: white;
                 &:hover{
+                    background-color: darken($dark-color,3);
                     cursor: pointer;
                 }
+            }
+            ul{
+                width: 100%;
+                box-sizing: border-box;
+                left: 0;
             }
         }
 }
@@ -59,7 +83,6 @@
 }
 
 .formContainer{
-    width: 50%;
     justify-self: flex-start;
     z-index: 1;
 }
@@ -79,19 +102,101 @@
     }
 }
 
+canvas{
+    padding-block: 1rem;
+    padding-inline: 2rem;
+    border-radius: 10px;
+}
+
 @media only screen and (min-width: 1400px) {
+    .formContainer{
+        width: 50%;
+        form{
+            input{
+                width: 75%;
+            }
+            button{
+                width: 25%;
+            }
+        }
+    }
+
     .graphContainer{
         width: 60vw;
         height: 60vh;
     }
 }
 @media only screen and (max-width: 1400px) {
+    .formContainer{
+        width: 70%;
+        form{
+            input{
+                width: 75%;
+            }
+            button{
+                width: 25%;
+            }
+        }
+    }
+
     .graphContainer{
         width: 80vw;
         height: 50vh;
     }
 }
+@media only screen and (max-width: 1000px) {
+    .formContainer{
+        width: 90%;
+        .selectors-container{
+            margin-top: 3rem;
+            form{
+                margin-top: .5rem;
+                width: 80%;
+                input{
+                    width: 80%;
+                }
+                button{
+                    width: 20%;
+                }
+            }
+            .selectors{
+                select{
+                    border-radius: 5px;
+                    margin-inline: 0.5rem;
+                }
+            }
+        }
+    }
+    .graphContainer{
+        width: 90vw;
+        height: 40vh;
+    }
+}
 @media only screen and (max-width: 600px) {
+    .formContainer{
+        width: 90%;
+        .selectors-container{
+            margin-top: 3rem;
+            .selectors{
+                select{
+                    width: 45%;
+                    border-radius: 5px;
+                    margin-inline: 0.5rem;
+                }
+            }
+            form{
+                margin-top: .5rem;
+                width: 90%;
+                input{
+                    width: 70%;
+                }
+                button{
+                    width: 30%;
+                }
+            } 
+        }
+    }
+
     .graphContainer{
         width: 90vw;
         height: 40vh;

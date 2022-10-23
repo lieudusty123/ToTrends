@@ -35,11 +35,12 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   margin-top: 1rem;
 }
 
 .root .selectors-container .selectors {
-  background-color: white;
   border-color: #fa9746;
   color: #fa9746;
 }
@@ -50,10 +51,37 @@
 
 .root .selectors-container .selectors select {
   height: 50px;
+  background-color: #eaf3fa;
+  border: 2px solid #7499f1;
+  font-size: 1rem;
+  color: #7499f1;
+  padding: .8rem;
+}
+
+.root .selectors-container .selectors select:hover {
+  cursor: pointer;
+}
+
+.root .selectors-container .selectors select:focus {
+  outline: none;
 }
 
 .root .selectors-container form {
   height: 50px;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .root .selectors-container form input {
@@ -61,24 +89,37 @@
           box-sizing: border-box;
   padding: 0;
   padding-left: .5rem;
+  font-size: 1.5rem;
   height: 100%;
-  border: 1px solid dodgerblue;
+  background-color: #eaf3fa;
+  color: #0b6783;
+  border: none;
+}
+
+.root .selectors-container form input:focus {
+  outline: none;
 }
 
 .root .selectors-container form button {
   height: 100%;
-  width: 100px;
-  border: 1px solid #7499f1;
+  border: none;
   background-color: #7499f1;
   color: white;
 }
 
 .root .selectors-container form button:hover {
+  background-color: #668ff0;
   cursor: pointer;
 }
 
+.root .selectors-container form ul {
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  left: 0;
+}
+
 .formContainer {
-  width: 50%;
   justify-self: flex-start;
   z-index: 1;
 }
@@ -107,7 +148,22 @@
   width: 100%;
 }
 
+canvas {
+  padding-block: 1rem;
+  padding-inline: 2rem;
+  border-radius: 10px;
+}
+
 @media only screen and (min-width: 1400px) {
+  .formContainer {
+    width: 50%;
+  }
+  .formContainer form input {
+    width: 75%;
+  }
+  .formContainer form button {
+    width: 25%;
+  }
   .graphContainer {
     width: 60vw;
     height: 60vh;
@@ -115,13 +171,70 @@
 }
 
 @media only screen and (max-width: 1400px) {
+  .formContainer {
+    width: 70%;
+  }
+  .formContainer form input {
+    width: 75%;
+  }
+  .formContainer form button {
+    width: 25%;
+  }
   .graphContainer {
     width: 80vw;
     height: 50vh;
   }
 }
 
+@media only screen and (max-width: 1000px) {
+  .formContainer {
+    width: 90%;
+  }
+  .formContainer .selectors-container {
+    margin-top: 3rem;
+  }
+  .formContainer .selectors-container form {
+    margin-top: .5rem;
+    width: 80%;
+  }
+  .formContainer .selectors-container form input {
+    width: 80%;
+  }
+  .formContainer .selectors-container form button {
+    width: 20%;
+  }
+  .formContainer .selectors-container .selectors select {
+    border-radius: 5px;
+    margin-inline: 0.5rem;
+  }
+  .graphContainer {
+    width: 90vw;
+    height: 40vh;
+  }
+}
+
 @media only screen and (max-width: 600px) {
+  .formContainer {
+    width: 90%;
+  }
+  .formContainer .selectors-container {
+    margin-top: 3rem;
+  }
+  .formContainer .selectors-container .selectors select {
+    width: 45%;
+    border-radius: 5px;
+    margin-inline: 0.5rem;
+  }
+  .formContainer .selectors-container form {
+    margin-top: .5rem;
+    width: 90%;
+  }
+  .formContainer .selectors-container form input {
+    width: 70%;
+  }
+  .formContainer .selectors-container form button {
+    width: 30%;
+  }
   .graphContainer {
     width: 90vw;
     height: 40vh;

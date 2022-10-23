@@ -69,7 +69,6 @@ const Header = (props) => {
       .querySelector(`#${homePageClasses["card-container"]}`)
       .scrollIntoView({ behavior: "smooth" });
   }
-  console.log(props.wordCloud);
   return (
     <header
       ref={headerRef}
@@ -86,7 +85,6 @@ const Header = (props) => {
         {props.wordCloud && (
           <div className={classes["word-cloud-wrapper"]}>
             <WordCloud data={props.wordCloud} />
-            {/* <ReactWordcloud options={options} words={props.wordCloud} /> */}
           </div>
         )}
 
