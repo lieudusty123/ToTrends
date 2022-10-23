@@ -7,10 +7,10 @@ import { useLocation } from "react-router-dom";
 import classes from "./TrendsPageStyling/trendsPage.module.css";
 import DateRange from "./DateRange";
 import CountrySelector from "../Home Page/Header/CountrySelector";
-import errorImage from "./TrendsPageStyling/sprites/site_support.png";
 import Nav from "../Home Page/Header/Nav";
 import image from "../Home Page/Header/HeaderStyling/sprites/2308.jpg";
 import Footer from "../UI/Footer";
+import { v4 as uuidv4 } from "uuid";
 
 let chart = {};
 const TrendsPage = () => {
@@ -25,6 +25,49 @@ const TrendsPage = () => {
     date: "month",
   });
 
+  const [autoComplete, setAutoComplete] = useState([]);
+  let mappedAutoComplete = [];
+  useEffect(() => {
+    if (compareInput.length > 1) {
+      const fetchData = async () => {
+        const response = await axios.get(
+          `/.netlify/functions/autoComplete?term=${compareInput}`
+        );
+        let termsArr = [];
+        response.data.default.topics.forEach((term) => {
+          if (
+            termsArr.indexOf(term.title) < 0 &&
+            mappedAutoComplete.length <= 5 &&
+            term.title.toLowerCase().indexOf(compareInput.toLowerCase()) > -1
+          ) {
+            termsArr.push(term.title);
+            mappedAutoComplete.push(
+              <li
+                onClick={() => {
+                  setAutoComplete([]);
+                  setCompareInput(term.title);
+                  if (term.title.length > 0) {
+                    setGraphTerms((oldTerms) => ({
+                      ...oldTerms,
+                      compare: term.title,
+                    }));
+                    setGraphState("loading");
+                  }
+                }}
+                key={uuidv4()}
+              >
+                {term.title}
+              </li>
+            );
+          }
+        });
+        setAutoComplete(mappedAutoComplete);
+      };
+      fetchData();
+    } else if (compareInput.length <= 1) {
+      setAutoComplete([]);
+    }
+  }, [compareInput]);
   function getInfoFromUrl() {
     const lastIndex = location.pathname.lastIndexOf("/");
     let searchTerm = location.pathname.slice(lastIndex + 1);
@@ -52,7 +95,6 @@ const TrendsPage = () => {
       const response = await axios.get(fetchCallStr);
 
       const responseData = await response.data;
-      console.log(responseData);
       // checks if got invalid response
       if (
         typeof responseData === "string" ||
@@ -106,12 +148,10 @@ const TrendsPage = () => {
             dates: [],
             data: [],
           };
-          console.log(responseData.default);
           responseData.default.timelineData.forEach((date) => {
             chartData.data.push(date.value[0]);
             chartData.dates.push(date.formattedTime);
           });
-          // chart.defaults.global.defaultFontColor = "#FFFFFF";
           datas = {
             labels: chartData.dates,
             datasets: [
@@ -121,8 +161,8 @@ const TrendsPage = () => {
                 fill: true,
                 borderColor: "rgb(255, 255, 255)",
                 defaultFontColor: "#FFFFFF",
-                tension: 0.3,
-                backgroundColor: "rgba(255, 255, 255, 0.39)",
+                tension: 0.1,
+                backgroundColor: "rgba(255, 255, 255, .5)",
               },
             ],
           };
@@ -155,7 +195,7 @@ const TrendsPage = () => {
             responsive: true,
             elements: {
               point: {
-                radius: 0,
+                radius: 3,
               },
             },
           },
@@ -183,7 +223,6 @@ const TrendsPage = () => {
   }
 
   function countrySelected(event) {
-    console.log(event.target.value);
     if (
       event.target.value.substring(event.target.value.indexOf(","), -2) ===
       "world"
@@ -210,8 +249,10 @@ const TrendsPage = () => {
         ...oldTerms,
         compare: compareInput,
       }));
+      setGraphState("loading");
     }
   }
+
   return (
     <div
       className={classes.root}
@@ -224,7 +265,7 @@ const TrendsPage = () => {
     >
       <Nav hideCountries={true} />
       <div className={classes.formContainer}>
-        <SearchForm />
+        <SearchForm buttonLabel="Search" />
         <div className={classes["selectors-container"]}>
           <div className={classes.selectors}>
             <DateRange inputHandler={dateSelected} />
@@ -243,6 +284,7 @@ const TrendsPage = () => {
               value={compareInput}
             />
             <button className={classes.inputs}>Compare!</button>
+            <ul>{autoComplete}</ul>
           </form>
         </div>
       </div>
@@ -251,15 +293,19 @@ const TrendsPage = () => {
         {(graphState === "loading" && <div>Loading...</div>) ||
           (graphState === "failed" && (
             <div className={classes["error-container"]}>
-              <div>Oops! Something went wrong</div>
-              <img
-                className={classes["error-image"]}
-                src={errorImage}
-                alt="art by pch.vector on Freepik"
-              />
+              <div style={{ color: "white" }}>
+                Oops! Something went wrong...
+              </div>
             </div>
           ))}
-        <canvas className={classes.graph} ref={graphRef}></canvas>
+        <canvas
+          className={classes.graph}
+          ref={graphRef}
+          style={{
+            backgroundColor:
+              graphState === "success" ? "rgba(0, 0, 0, 0.295)" : "transparent",
+          }}
+        ></canvas>
       </div>
       <Footer />
     </div>

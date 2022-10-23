@@ -101,6 +101,19 @@ html {
   padding-block: 1rem;
 }
 
+#main-footer {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background: #d5e7f5;
+  width: 100%;
+  padding: .8rem;
+  color: white;
+  background-color: #2e2e30;
+  position: absolute;
+  bottom: auto;
+  margin-bottom: 100%;
+}
+
 @media only screen and (min-width: 1301px) {
   #card-container {
     -ms-grid-columns: (1fr)[4];

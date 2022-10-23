@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import SkeletonElement from "../../UI/SkeletonElement";
 
 const WordCloud = (props) => {
   const [mappedItems, setMappedItems] = useState([]);
@@ -7,85 +8,99 @@ const WordCloud = (props) => {
     let map = [];
     function getHigh() {
       let highest = 0;
+      let items;
       for (const key in props.data) {
         if (props.data[key].value > highest) {
           highest = props.data[key].value;
+          items = props.data[key];
         }
       }
-      return highest;
+      return { highestValue: highest, item: items };
     }
 
-    let highestValue = getHigh();
+    let { highestValue } = getHigh();
+    let { item } = getHigh();
 
     let colors = ["#F9D3AB", "#f4cc72", "#ffbe2d", "#ffb100", "gold"];
-    // let defaultColor = 'hsl(51,100,50)';
+    let highestDiv;
     for (const key in props.data) {
       let precentage = props.data[key].value / highestValue;
-      let color = `hsl(51,${
-        100 * precentage > 40
-          ? 100 * precentage
-          : Math.floor(Math.random() * 10 + 40)
-      }%,50%)`;
-      console.log(color);
+      // let color = `hsl(51,${
+      //   100 * precentage > 60 ? 100 * precentage : Math.random() * 20 + 50
+      // }%,60%)`;
       let wordFontSize =
-        40 * precentage > 18
-          ? 40 * precentage
-          : 18 + Math.floor(Math.random() * 3);
-
-      map.push(
-        <span
-          style={{
-            fontSize: `${wordFontSize}px`,
-            paddingInline: "10px",
-            display: "inline-block",
-            whiteSpace: "nowrap",
-            textAlign: "center",
-            fontWeight: "900",
-            fontFamily: "Tahoma",
-            color: `${colors[Math.floor(Math.random() * colors.length)]}`,
-            transform: `translate(${Math.floor(
-              Math.random() * 10
-            )}px, ${Math.floor(Math.random() * 10)}px)`,
-          }}
-          key={props.data[key].name}
-        >
-          {props.data[key].name}
-        </span>
-      );
-    }
-    shuffle(map);
-    function shuffle(array) {
-      let currentIndex = array.length,
-        randomIndex;
-
-      // While there remain elements to shuffle.
-      while (currentIndex !== 0) {
-        // Pick a remaining element.
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
-
-        // And swap it with the current element.
-        [array[currentIndex], array[randomIndex]] = [
-          array[randomIndex],
-          array[currentIndex],
-        ];
+        30 * precentage > 10
+          ? 30 * precentage
+          : 10 + Math.floor(Math.random() * 10);
+      if (props.data[key] !== item) {
+        map.push(
+          <span
+            style={{
+              fontSize: `${wordFontSize}px`,
+              paddingInline: "10px",
+              paddingBlock: `${Math.floor(Math.random() * 10)}px)`,
+              display: "inline-block",
+              whiteSpace: "nowrap",
+              textAlign: "center",
+              fontWeight: "900",
+              fontFamily: "Tahoma",
+              color: `${colors[Math.floor(Math.random() * colors.length)]}`,
+              transform: `translate(${Math.floor(
+                Math.random() * 10
+              )}px, ${Math.floor(Math.random() * 10)}px)`,
+            }}
+            key={props.data[key].name}
+          >
+            {props.data[key].name}
+          </span>
+        );
+      } else {
+        highestDiv = (
+          <span
+            style={{
+              fontSize: `${wordFontSize}px`,
+              paddingInline: "10px",
+              paddingBlock: `${Math.floor(Math.random() * 10)}px)`,
+              display: "inline-block",
+              whiteSpace: "nowrap",
+              textAlign: "center",
+              fontWeight: "900",
+              fontFamily: "Tahoma",
+              color: `gold`,
+              transform: `translate(${Math.floor(
+                Math.random() * 10
+              )}px, ${Math.floor(Math.random() * 10)}px)`,
+            }}
+            key={props.data[key].name}
+          >
+            {props.data[key].name}
+          </span>
+        );
       }
-
-      return array;
     }
+
+    let middleIndex = map.indexOf(map[Math.round((map.length - 1) / 2)]);
+    map.splice(middleIndex, 0, highestDiv);
+
     setMappedItems(map);
   }, [props.data]);
 
+  function renderSkeleton() {
+    if (mappedItems.length === 0) {
+      return <SkeletonElement />;
+    }
+  }
   return (
     <React.Fragment>
+      {renderSkeleton()}
       <div
         style={{
-          height: "100%",
-          width: "100%",
+          maxHeight: "100%",
+          maxWidth: "100%",
           textAlign: "center",
           wordBreak: "break-all",
           wordWrap: "break-word",
-          overflow: "hidden",
+          overflow: "visible",
         }}
       >
         {mappedItems}

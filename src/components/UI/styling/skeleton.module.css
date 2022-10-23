@@ -1,0 +1,48 @@
+.wordCloud {
+  width: 100%;
+}
+
+.wordCloud .wordCloudRow {
+  margin: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.wordCloud .wordCloudRow .wordCloudItem {
+  display: inline-block;
+  border-radius: 6px !important;
+  height: 20px !important;
+  margin: .5rem;
+  opacity: 0.8;
+  -webkit-animation: blinking 2s infinite ease-in-out;
+          animation: blinking 2s infinite ease-in-out;
+}
+
+@-webkit-keyframes blinking {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes blinking {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+/*# sourceMappingURL=skeleton.module.css.map */
