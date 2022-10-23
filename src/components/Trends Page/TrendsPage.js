@@ -26,8 +26,8 @@ const TrendsPage = () => {
   });
 
   const [autoComplete, setAutoComplete] = useState([]);
-  let mappedAutoComplete = [];
   useEffect(() => {
+    let mappedAutoComplete = [];
     if (compareInput.length > 1) {
       const fetchData = async () => {
         const response = await axios.get(
