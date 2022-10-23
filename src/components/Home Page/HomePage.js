@@ -5,7 +5,6 @@ import classes from "./homePageStyling/homePage.module.css";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import placeHolderImage from "./homePageStyling/sprites/placeholder.png";
-import Footer from "../UI/Footer";
 
 const HomePage = () => {
   const data = useContext(context);
