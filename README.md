@@ -2,7 +2,7 @@
 
 ## About the app
 
-A google trends app, made with ReactJS, ContextAPI, SCSS/SASS, Javascript, Axios, AJAX, Serverless functions.
+A google trends app, made with ReactJS, ContextAPI, SCSS/SASS, Javascript, Axios, AJAX, Serverless functions, netlify-lambda.
 
 Handled routing with React Router.
 
