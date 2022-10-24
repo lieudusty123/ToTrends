@@ -88,7 +88,7 @@ const Header = (props) => {
           </div>
         )}
 
-        <SearchForm>
+        <SearchForm buttonLabel="Search">
           <div className={classes["type-writer-container"]}>
             Explore the current{" "}
             <span ref={typeWriterEle} className={classes["type-writer"]}></span>

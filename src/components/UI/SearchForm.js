@@ -6,10 +6,8 @@ import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 const SearchForm = (props) => {
   const [searchValue, setSearchValue] = useState("");
-  const [lastCallValue, setLastCallValue] = useState("");
   const [autoComplete, setAutoComplete] = useState([]);
   const formRef = useRef();
-  let mappedAutoComplete = [];
   const data = useContext(context);
   const navigate = useNavigate();
 
@@ -22,12 +20,14 @@ const SearchForm = (props) => {
       });
     }
   }
-  function navigateToPage(e) {
-    navigate(`/interestOverTime/${e.target.textContent}`, {
-      state: { searchTerm: e.target.textContent, country: data.initials },
-    });
-  }
+
   useEffect(() => {
+    let mappedAutoComplete = [];
+    function navigateToPage(e) {
+      navigate(`/interestOverTime/${e.target.textContent}`, {
+        state: { searchTerm: e.target.textContent, country: data.initials },
+      });
+    }
     if (searchValue.length > 1) {
       const fetchData = async () => {
         const response = await axios.get(
@@ -55,7 +55,7 @@ const SearchForm = (props) => {
     } else if (searchValue.length <= 1) {
       setAutoComplete([]);
     }
-  }, [searchValue]);
+  }, [searchValue, navigate, data.initials]);
   function handleChange(e) {
     setSearchValue(e.target.value);
   }
