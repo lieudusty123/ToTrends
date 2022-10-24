@@ -25,6 +25,7 @@ const TrendsPage = () => {
     date: "month",
   });
 
+  //Auto complete ---> START
   const [autoComplete, setAutoComplete] = useState([]);
   useEffect(() => {
     let mappedAutoComplete = [];
@@ -46,13 +47,13 @@ const TrendsPage = () => {
                 onClick={() => {
                   setAutoComplete([]);
                   setCompareInput(term.title);
-                  if (term.title.length > 0) {
-                    setGraphTerms((oldTerms) => ({
-                      ...oldTerms,
-                      compare: term.title,
-                    }));
-                    setGraphState("loading");
-                  }
+                  // if (term.title.length > 0) {
+                  setGraphTerms((oldTerms) => ({
+                    ...oldTerms,
+                    compare: term.title,
+                  }));
+                  // }
+                  setGraphState("loading");
                 }}
                 key={uuidv4()}
               >
@@ -68,6 +69,7 @@ const TrendsPage = () => {
       setAutoComplete([]);
     }
   }, [compareInput]);
+  //Auto complete ---> END
   function getInfoFromUrl() {
     const lastIndex = location.pathname.lastIndexOf("/");
     let searchTerm = location.pathname.slice(lastIndex + 1);
@@ -156,7 +158,7 @@ const TrendsPage = () => {
             labels: chartData.dates,
             datasets: [
               {
-                label: chartData.dates,
+                label: graphTerms.term,
                 data: chartData.data,
                 fill: true,
                 borderColor: "rgb(255, 255, 255)",
@@ -250,6 +252,7 @@ const TrendsPage = () => {
         compare: compareInput,
       }));
       setGraphState("loading");
+      setAutoComplete([]);
     }
   }
 
