@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import SkeletonElement from "../../UI/SkeletonElement";
 
 const WordCloud = (props) => {
   const [mappedItems, setMappedItems] = useState([]);
@@ -25,9 +24,6 @@ const WordCloud = (props) => {
     let highestDiv;
     for (const key in props.data) {
       let precentage = props.data[key].value / highestValue;
-      // let color = `hsl(51,${
-      //   100 * precentage > 60 ? 100 * precentage : Math.random() * 20 + 50
-      // }%,60%)`;
       let wordFontSize =
         30 * precentage > 10
           ? 30 * precentage
@@ -81,18 +77,11 @@ const WordCloud = (props) => {
 
     let middleIndex = map.indexOf(map[Math.round((map.length - 1) / 2)]);
     map.splice(middleIndex, 0, highestDiv);
-
     setMappedItems(map);
   }, [props.data]);
 
-  function renderSkeleton() {
-    if (mappedItems.length === 0) {
-      return <SkeletonElement />;
-    }
-  }
   return (
     <React.Fragment>
-      {renderSkeleton()}
       <div
         style={{
           maxHeight: "100%",
