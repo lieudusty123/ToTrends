@@ -69,7 +69,7 @@ nav{
     @include flexCenter(column,center ,flex-start);
     position: absolute;
     .type-writer-container{
-        color: $dark-color;
+        color: white;
         margin-bottom: 1rem;
         .type-writer{
             color: $highlight-color;

@@ -34,7 +34,6 @@ const SearchForm = (props) => {
           `/.netlify/functions/autoComplete?term=${searchValue}`
         );
         let termsArr = [];
-        console.log(response.data.default);
         response.data.default.topics.forEach((term) => {
           if (
             termsArr.indexOf(term.title) < 0 &&

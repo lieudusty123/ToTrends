@@ -16,10 +16,14 @@
 }
 
 .root{
-    @include flex(column, space-evenly, center);
+    display: grid;
+
     background: darken($background-color, 5);
     height: 100vh;
     width: 100vw;
+    nav{
+        grid-column: 1/2;
+    }
     .selectors-container{
         @include flexCenter(row);
         flex-wrap: wrap;
@@ -83,8 +87,9 @@
 }
 
 .formContainer{
-    justify-self: flex-start;
     z-index: 1;
+    grid-row: 2;
+    grid-column: 2;
 }
 
 .error-container{
@@ -107,10 +112,30 @@ canvas{
     padding-inline: 2rem;
     border-radius: 10px;
 }
-
+.graphContainer{
+    grid-row: 3;
+    grid-column: 2;
+    max-height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: nowrap;
+    // #over-time-graph{
+    // }
+    // #averages-graph{
+    //     width: 25% !important;
+    //     height: 100% !important;
+    // }
+}
 @media only screen and (min-width: 1400px) {
+    .root{
+        grid-template-columns: 1fr 70% 1fr;
+        grid-template-rows: 4rem 1fr 2fr;
+    }
     .formContainer{
-        width: 50%;
+        // width: 50%;
+    padding: 2rem;
+
         form{
             input{
                 width: 75%;
@@ -119,16 +144,17 @@ canvas{
                 width: 25%;
             }
         }
-    }
-
-    .graphContainer{
-        width: 60vw;
-        height: 60vh;
     }
 }
 @media only screen and (max-width: 1400px) {
+    .root{
+        grid-template-columns: 1fr 90% 1fr;
+        grid-template-rows: 4rem 1fr 2fr;
+    }
     .formContainer{
-        width: 70%;
+        // width: 70%;
+    padding: 2rem;
+
         form{
             input{
                 width: 75%;
@@ -138,15 +164,12 @@ canvas{
             }
         }
     }
-
-    .graphContainer{
-        width: 80vw;
-        height: 50vh;
-    }
 }
 @media only screen and (max-width: 1000px) {
+    
     .formContainer{
-        width: 90%;
+        // width: 90%;
+    padding: 2rem;
         .selectors-container{
             margin-top: 3rem;
             form{
@@ -167,14 +190,11 @@ canvas{
             }
         }
     }
-    .graphContainer{
-        width: 90vw;
-        height: 40vh;
-    }
 }
 @media only screen and (max-width: 600px) {
     .formContainer{
-        width: 90%;
+        // width: 100%;
+        padding-inline: 0;
         .selectors-container{
             margin-top: 3rem;
             .selectors{
@@ -195,10 +215,5 @@ canvas{
                 }
             } 
         }
-    }
-
-    .graphContainer{
-        width: 90vw;
-        height: 40vh;
     }
 }
