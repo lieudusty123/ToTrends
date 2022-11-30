@@ -69,7 +69,7 @@ nav{
     @include flexCenter(column,center ,flex-start);
     position: absolute;
     .type-writer-container{
-        color: $dark-color;
+        color: white;
         margin-bottom: 1rem;
         .type-writer{
             color: $highlight-color;
@@ -77,23 +77,25 @@ nav{
         }
         .flicker{
             display: inline-block;
-            height: 1.5rem;
-            width: 3px;
+            height: 3px;
+            width: 1rem;
             margin-left: 2px;
-            background-color: white;
+            background-color: $highlight-color;
             animation: blink infinite .8s;
             @keyframes blink {
                 0% {background-color: transparent;}
                 45% {background-color: transparent;}
-                50% {background-color: white;}
-                95% {background-color: white;}
+                50% {background-color: $highlight-color;}
+                95% {background-color: $highlight-color;}
                 100% {background-color: transparent;}
             }
         }
     }
     .word-cloud-wrapper{
         margin-bottom: 3rem;
-
+        background-color: rgba(0, 0, 0, 0.212);
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
     @include flexCenter(row,center ,center);
         div{
             @include flexCenter(row,center ,center);
@@ -102,9 +104,7 @@ nav{
             flex-wrap: wrap;
 
         }
-        background-color: rgba(0, 0, 0, 0.212);
-        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
-        border-radius: 10px;
+
     }
 }
 

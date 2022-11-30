@@ -4,14 +4,17 @@ const googleTrends = require("google-trends-api");
 exports.handler = async (event, context) => {
   try {
     const country = event.queryStringParameters.country;
-    const term = event.queryStringParameters.term;
-    const compare = event.queryStringParameters.compare;
+    let term;
+    console.log(event.queryStringParameters.term);
+    if (event.queryStringParameters.term.includes(",")) {
+      term = event.queryStringParameters.term.split(",");
+    } else {
+      term = event.queryStringParameters.term;
+    }
+    console.log(term);
     let currentDate = new Date();
     let date;
     let searchQuery = term;
-    if (typeof compare === "string") {
-      searchQuery = [term, compare];
-    }
     switch (event.queryStringParameters.date) {
       case "week":
         date = new Date(

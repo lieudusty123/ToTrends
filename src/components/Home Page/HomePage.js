@@ -18,7 +18,6 @@ const HomePage = () => {
         `/.netlify/functions/dailyTrends?country=${data.initials}`
       );
       setStateData(response.data);
-      console.log(response.data);
     };
     fetchData();
   }, [data.initials]);
@@ -113,8 +112,6 @@ const HomePage = () => {
       {mappedItems.length > 0 && (
         <footer id={classes["main-footer"]}>© Made by Omer Ezra. 2022</footer>
       )}
-
-      {/* <Footer /> */}
     </Fragment>
   );
 };
