@@ -149,7 +149,6 @@ const TrendsPage = () => {
         </div>
       </div>
       <OverTimeGraph graphTerms={graphTerms} />
-      {/* <Footer /> */}
     </div>
   );
 };

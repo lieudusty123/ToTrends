@@ -109,9 +109,6 @@ const HomePage = () => {
       <div id={classes["card-container"]}>
         {mappedItems.length === 0 ? "Loading..." : mappedItems}
       </div>
-      {mappedItems.length > 0 && (
-        <footer id={classes["main-footer"]}>© Made by Omer Ezra. 2022</footer>
-      )}
     </Fragment>
   );
 };

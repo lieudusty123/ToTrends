@@ -5,13 +5,13 @@ exports.handler = async (event, context) => {
   try {
     const country = event.queryStringParameters.country;
     let term;
-    console.log(event.queryStringParameters.term);
+    // console.log(event.queryStringParameters.term);
     if (event.queryStringParameters.term.includes(",")) {
       term = event.queryStringParameters.term.split(",");
     } else {
       term = event.queryStringParameters.term;
     }
-    console.log(term);
+    // console.log(term);
     let currentDate = new Date();
     let date;
     let searchQuery = term;
@@ -63,17 +63,17 @@ exports.handler = async (event, context) => {
       };
     }
 
-    console.log("date", date);
-    console.log("currentDate", currentDate);
-    console.log(obj);
+    // console.log("date", date);
+    // console.log("currentDate", currentDate);
+    // console.log(obj);
     const data = await googleTrends.interestOverTime(
       obj,
       function (err, results) {
         if (err) {
-          console.log(err);
+          // console.log(err);
           return err;
         } else {
-          console.log("resultsresultsresultsresults", results);
+          // console.log("results", results);
           return results;
         }
       }
@@ -83,7 +83,7 @@ exports.handler = async (event, context) => {
       body: data,
     };
   } catch (error) {
-    console.log("err", error);
+    // console.log("err", error);
     return { statusCode: 500, body: JSON.stringify(error) };
   }
 };

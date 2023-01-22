@@ -14,13 +14,13 @@ exports.handler = async (event, context) => {
         }
       }
     );
-    console.log(data);
+    // console.log(data);
     return {
       statusCode: 200,
       body: data,
     };
   } catch (error) {
-    console.log("err", error);
+    // console.log("err", error);
     return { statusCode: 500, body: JSON.stringify(error) };
   }
 };
