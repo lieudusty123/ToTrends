@@ -1,219 +1,211 @@
 @import "./_graph.module.scss";
 @import "../../UI/styling/vars";
 
-@mixin flex($direction, $justify:center, $align:center) {
-    display: flex;
-    flex-direction: $direction;
-    justify-content: $justify;
-    align-items: $align;
+@mixin flex($direction, $justify: center, $align: center) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
 }
 
-@mixin flexCenter($direction){
-    display: flex;
-    flex-direction: $direction;
-    justify-content: center; 
-    align-items: center; 
+@mixin flexCenter($direction) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: center;
+  align-items: center;
 }
 
-.root{
-    display: grid;
-
-    background: darken($background-color, 5);
-    height: 100vh;
-    width: 100vw;
-    nav{
-        grid-column: 1/2;
-    }
-    .selectors-container{
-        @include flexCenter(row);
-        flex-wrap: wrap;
-        margin-top: 1rem;
-        .selectors{
-            border-color: $highlight-color;
-            color: $highlight-color;
-            &:focus{      
-                outline: none;
-            }
-            select{
-                height: 50px;
-                background-color: $background-color;
-                border: 2px solid $dark-color;
-                font-size: 1rem;
-                color: $dark-color;
-                padding: .8rem;
-                &:hover{
-                    cursor: pointer;
-                }
-                &:focus{      
-                    outline: none;
-                }
-            }
+.root {
+  display: grid;
+  background: darken($background-color, 80);
+  height: 100vh;
+  width: 100vw;
+  nav {
+    grid-column: 1/2;
+  }
+  .selectors-container {
+    @include flexCenter(row);
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    .selectors {
+      border-color: $highlight-color;
+      color: $highlight-color;
+      &:focus {
+        outline: none;
+      }
+      select {
+        height: 50px;
+        background-color: $background-color;
+        border: 2px solid $dark-color;
+        font-size: 1rem;
+        color: $dark-color;
+        padding: 0.8rem;
+        &:hover {
+          cursor: pointer;
         }
-        form{
-            height: 50px;
-            position: relative;
-            @include flexCenter(row);
-            input{
-                box-sizing: border-box;
-                padding: 0;
-                padding-left: .5rem;
-                font-size: 1.5rem;
-                height: 100%;
-                background-color: $background-color;
-                color: #0b6783;
-                border: none;
-                &:focus{
-                    outline: none;
-                }
-            }
-            button{ 
-                height: 100%;
-                border: none;
-                background-color: $dark-color;
-                color: white;
-                &:hover{
-                    background-color: darken($dark-color,3);
-                    cursor: pointer;
-                }
-            }
-            ul{
-                width: 100%;
-                box-sizing: border-box;
-                left: 0;
-            }
+        &:focus {
+          outline: none;
         }
-}
-    
-}
-
-.formContainer{
-    z-index: 1;
-    grid-row: 2;
-    grid-column: 2;
-}
-
-.error-container{
-    margin-top: 4rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    div{
-        text-align: center;
-        font-size: 2rem;
-        margin-bottom: 1rem;
+      }
     }
-    .error-image{
+    form {
+      height: 50px;
+      position: relative;
+      @include flexCenter(row);
+      input {
+        box-sizing: border-box;
+        padding: 0;
+        padding-left: 0.5rem;
+        font-size: 1.5rem;
+        height: 100%;
+        background-color: $background-color;
+        color: #0b6783;
+        border: none;
+        &:focus {
+          outline: none;
+        }
+      }
+      button {
+        height: 100%;
+        border: none;
+        background-color: $dark-color;
+        color: white;
+        &:hover {
+          background-color: darken($dark-color, 3);
+          cursor: pointer;
+        }
+      }
+      ul {
         width: 100%;
+        box-sizing: border-box;
+        left: 0;
+      }
     }
+  }
 }
 
-canvas{
-    padding-block: 1rem;
-    padding-inline: 2rem;
-    border-radius: 10px;
+.formContainer {
+  z-index: 1;
+  grid-row: 2;
+  grid-column: 2;
 }
-.graphContainer{
-    grid-row: 3;
-    grid-column: 2;
-    max-height: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: nowrap;
-    // #over-time-graph{
-    // }
-    // #averages-graph{
-    //     width: 25% !important;
-    //     height: 100% !important;
-    // }
+
+.error-container {
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  div {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  .error-image {
+    width: 100%;
+  }
+}
+
+canvas {
+  padding-block: 1rem;
+  padding-inline: 2rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+.graphContainer {
+  grid-row: 3;
+  grid-column: 2;
+  max-height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: nowrap;
 }
 @media only screen and (min-width: 1400px) {
-    .root{
-        grid-template-columns: 1fr 70% 1fr;
-        grid-template-rows: 4rem 1fr 2fr;
-    }
-    .formContainer{
-        // width: 50%;
+  .root {
+    grid-template-columns: 1fr 70% 1fr;
+    grid-template-rows: 4rem 1fr 2fr;
+  }
+  .formContainer {
+    // width: 50%;
     padding: 2rem;
 
-        form{
-            input{
-                width: 75%;
-            }
-            button{
-                width: 25%;
-            }
-        }
+    form {
+      input {
+        width: 75%;
+      }
+      button {
+        width: 25%;
+      }
     }
+  }
 }
 @media only screen and (max-width: 1400px) {
-    .root{
-        grid-template-columns: 1fr 90% 1fr;
-        grid-template-rows: 4rem 1fr 2fr;
-    }
-    .formContainer{
-        // width: 70%;
+  .root {
+    grid-template-columns: 1fr 90% 1fr;
+    grid-template-rows: 4rem 1fr 2fr;
+  }
+  .formContainer {
+    // width: 70%;
     padding: 2rem;
 
-        form{
-            input{
-                width: 75%;
-            }
-            button{
-                width: 25%;
-            }
-        }
+    form {
+      input {
+        width: 75%;
+      }
+      button {
+        width: 25%;
+      }
     }
+  }
 }
 @media only screen and (max-width: 1000px) {
-    
-    .formContainer{
-        // width: 90%;
+  .formContainer {
+    // width: 90%;
     padding: 2rem;
-        .selectors-container{
-            margin-top: 3rem;
-            form{
-                margin-top: .5rem;
-                width: 80%;
-                input{
-                    width: 80%;
-                }
-                button{
-                    width: 20%;
-                }
-            }
-            .selectors{
-                select{
-                    border-radius: 5px;
-                    margin-inline: 0.5rem;
-                }
-            }
+    .selectors-container {
+      margin-top: 3rem;
+      form {
+        margin-top: 0.5rem;
+        width: 80%;
+        input {
+          width: 80%;
         }
+        button {
+          width: 20%;
+        }
+      }
+      .selectors {
+        select {
+          border-radius: 5px;
+          margin-inline: 0.5rem;
+        }
+      }
     }
+  }
 }
 @media only screen and (max-width: 600px) {
-    .formContainer{
-        // width: 100%;
-        padding-inline: 0;
-        .selectors-container{
-            margin-top: 3rem;
-            .selectors{
-                select{
-                    width: 45%;
-                    border-radius: 5px;
-                    margin-inline: 0.5rem;
-                }
-            }
-            form{
-                margin-top: .5rem;
-                width: 90%;
-                input{
-                    width: 70%;
-                }
-                button{
-                    width: 30%;
-                }
-            } 
+  .formContainer {
+    // width: 100%;
+    padding-inline: 0;
+    .selectors-container {
+      margin-top: 3rem;
+      .selectors {
+        select {
+          width: 45%;
+          border-radius: 5px;
+          margin-inline: 0.5rem;
         }
+      }
+      form {
+        margin-top: 0.5rem;
+        width: 90%;
+        input {
+          width: 70%;
+        }
+        button {
+          width: 30%;
+        }
+      }
     }
+  }
 }
