@@ -53,7 +53,7 @@ const TrendsPage = () => {
               <li
                 onClick={() => {
                   setAutoComplete([]);
-                  setCompareInput(term.title);
+                  setCompareInput("");
                   setGraphTerms((oldTerms) => ({
                     ...oldTerms,
                     term: [...graphTerms.term, term.title],
@@ -114,15 +114,7 @@ const TrendsPage = () => {
   }
 
   return (
-    <div
-      className={classes.root}
-      style={{
-        background: `url(${image})`,
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
-      }}
-    >
+    <div className={classes.root}>
       <Nav hideCountries={true} />
       <div className={classes.formContainer}>
         <SearchForm buttonLabel="Search" />
