@@ -29,7 +29,7 @@ const TrendsPage = () => {
         }));
     }
     getInfoFromUrl();
-  }, [location.pathname, graphTerms.term]);
+  }, [location.pathname]);
   //Auto complete ---> START
   const [autoComplete, setAutoComplete] = useState([]);
   useEffect(() => {
@@ -70,7 +70,7 @@ const TrendsPage = () => {
     } else if (compareInput.length <= 1) {
       setAutoComplete([]);
     }
-  }, [compareInput, graphTerms.term]);
+  }, [compareInput]);
   //Auto complete ---> END
 
   function dateSelected(e) {
