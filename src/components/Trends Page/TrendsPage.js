@@ -17,19 +17,20 @@ const TrendsPage = () => {
   const [graphTerms, setGraphTerms] = useState({
     country: data.initials,
     date: "month",
+    term: [],
   });
   useEffect(() => {
     function getInfoFromUrl() {
       const lastIndex = location.pathname.lastIndexOf("/");
       let searchTerm = location.pathname.slice(lastIndex + 1);
-      if (graphTerms.term !== searchTerm)
+      if (graphTerms.term[0] !== searchTerm)
         return setGraphTerms((oldTerms) => ({
           ...oldTerms,
           term: searchTerm.split("&"),
         }));
     }
     getInfoFromUrl();
-  }, [location.pathname]);
+  }, [location.pathname, graphTerms.term]);
   //Auto complete ---> START
   const [autoComplete, setAutoComplete] = useState([]);
   useEffect(() => {
@@ -70,7 +71,7 @@ const TrendsPage = () => {
     } else if (compareInput.length <= 1) {
       setAutoComplete([]);
     }
-  }, [compareInput]);
+  }, [compareInput, graphTerms.term]);
   //Auto complete ---> END
 
   function dateSelected(e) {

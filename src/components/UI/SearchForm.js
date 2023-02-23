@@ -42,7 +42,13 @@ const SearchForm = (props) => {
           ) {
             termsArr.push(term.title);
             mappedAutoComplete.push(
-              <li onClick={navigateToPage} key={uuidv4()}>
+              <li
+                onClick={(e) => {
+                  setSearchValue("");
+                  navigateToPage(e);
+                }}
+                key={uuidv4()}
+              >
                 {term.title}
               </li>
             );
