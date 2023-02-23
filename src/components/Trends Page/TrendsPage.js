@@ -7,8 +7,6 @@ import classes from "./TrendsPageStyling/trendsPage.module.css";
 import DateRange from "./DateRange";
 import CountrySelector from "../Home Page/Header/CountrySelector";
 import Nav from "../Home Page/Header/Nav";
-import image from "../Home Page/Header/HeaderStyling/sprites/2308.jpg";
-import Footer from "../UI/Footer";
 import { v4 as uuidv4 } from "uuid";
 import OverTimeGraph from "./OverTimeGraph";
 
@@ -31,7 +29,7 @@ const TrendsPage = () => {
         }));
     }
     getInfoFromUrl();
-  }, [location.pathname]);
+  }, [location.pathname, graphTerms.term]);
   //Auto complete ---> START
   const [autoComplete, setAutoComplete] = useState([]);
   useEffect(() => {
@@ -72,7 +70,7 @@ const TrendsPage = () => {
     } else if (compareInput.length <= 1) {
       setAutoComplete([]);
     }
-  }, [compareInput]);
+  }, [compareInput, graphTerms.term]);
   //Auto complete ---> END
 
   function dateSelected(e) {
