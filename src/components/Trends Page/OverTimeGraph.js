@@ -1,7 +1,6 @@
-import React, { useEffect, useState, useContext, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import classes from "./TrendsPageStyling/trendsPage.module.css";
 import axios from "axios";
-import context from "../../contextAPI/context";
 import { Chart, registerables } from "chart.js";
 let overTimeChart = {};
 let avgGraphChart = {};
@@ -10,7 +9,6 @@ const OverTimeGraph = (props) => {
   Chart.register(...registerables);
 
   const [graphState, setGraphState] = useState("loading");
-  const data = useContext(context);
   const graphRef = useRef();
   const avgRef = useRef();
   const graphTerms = props.graphTerms;
